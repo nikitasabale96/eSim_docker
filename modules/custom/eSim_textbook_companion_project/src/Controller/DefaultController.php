@@ -2181,7 +2181,7 @@ function textbook_companion_download_sample_code()
     $form['search_cheque'] = [
       '#type' => 'textfield',
       '#title' => t('Search'),
-      '#size' => 48,
+       // '#size' => 48,
     ];
     $form['submit_cheque'] = [
       '#type' => 'submit',

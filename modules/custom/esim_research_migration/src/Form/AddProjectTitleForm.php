@@ -35,7 +35,7 @@ class AddProjectTitleForm extends FormBase {
     $form['new_project_title_name'] = [
       '#type' => 'textfield',
       '#title' => t('Enter the name of the project title'),
-      '#size' => 250,
+      // '#size' => 250,
       '#attributes' => [
         'placeholder' => t('Enter the name of the project title displayed to the contributor')
         ],
@@ -45,7 +45,7 @@ class AddProjectTitleForm extends FormBase {
     $form['project_link'] = [
       '#type' => 'textfield',
       '#title' => t('Enter the Link of the project'),
-      '#size' => 250,
+      // '#size' => 250,
       '#attributes' => [
         'placeholder' => t('Enter the Link of the project displayed to the contributor')
         ],

@@ -112,7 +112,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       // '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('Name of the Proposer'),
-      '#size' => 100,
+      // '#size' => 100,
       '#attributes' => [
   'class' => ['form-control'],
         'placeholder' => $this->t('Enter your full name')
@@ -124,7 +124,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       // '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('Email'),
-      '#size' => 30,
+      // '#size' => 30,
       '#value' => $user ? $user->getEmail() : '',
       '#disabled' => TRUE,
     ];
@@ -132,7 +132,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('Contact No.'),
-      '#size' => 30,
+      // '#size' => 30,
       '#attributes' => [
         'placeholder' => t('Enter your contact number')
         ],
@@ -151,7 +151,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       // '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('University/ Institute'),
-      '#size' => 50,
+      // '#size' => 50,
       '#maxlength' => 200,
       '#required' => TRUE,
       '#attributes' => [
@@ -175,7 +175,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       // '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('Other than India'),
-      '#size' => 30,
+      // '#size' => 30,
       '#attributes' => [
         'placeholder' => $this->t('Enter your country name')
         ],
@@ -191,7 +191,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       // '#attributes' => array('class' => array('form-control')),
 '#title' => t('State other than India'),
-      '#size' => 50,
+      // '#size' => 50,
       '#attributes' => [
         'placeholder' => t('Enter your state/region name')
         ],
@@ -207,7 +207,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       // '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('City other than India'),
-      '#size' => 50,
+      // '#size' => 50,
       '#attributes' => [
         'placeholder' => $this->t('Enter your city name')
         ],
@@ -250,7 +250,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       '#attributes' => array('class' => array('form-control')),
 '#title' => t('Pincode'),
-      '#size' => 30,
+      // '#size' => 30,
       '#maxlength' => 6,
       '#required' => TRUE,
       '#attributes' => [
@@ -281,7 +281,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
    
     $form['older'] = [
       '#type' => 'textfield',
-      '#size' => 30,
+      // '#size' => 30,
       '#maxlength' => 50,
       //'#required' => TRUE,
         '#description' => $this->t('Specify the Older version used'),
@@ -298,7 +298,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
       '#type' => 'textfield',
       '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('Title of the Lab'),
-      '#size' => 100,
+      // '#size' => 100,
       '#required' => TRUE,
     ];
     $first_experiemnt = TRUE;
@@ -308,7 +308,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
           '#type' => 'textfield',
           '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('Title of the Experiment ') . $counter,
-          '#size' => 100,
+          // '#size' => 100,
           '#required' => TRUE,
         ];
         $namefield = "lab_experiment-" . $counter;
@@ -336,7 +336,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
           '#type' => 'textfield',
           '#attributes' => array('class' => array('form-control')),
 '#title' => $this->t('Title of the Experiment ') . $counter,
-          '#size' => 100,
+          // '#size' => 100,
           '#required' => FALSE,
         ];
         $namefield = "lab_experiment-" . $counter;
@@ -400,7 +400,7 @@ $response = new RedirectResponse(Url::fromRoute('<front>')->toString());
     $form['samplefile']['samplefile1'] = [
       '#type' => 'file',
       '#title' => $this->t('Upload sample source file'),
-      '#size' => 48,
+      // '#size' => 48,
       '#description' => $this->t('Separate filenames with underscore. No spaces or any special characters allowed in filename.') . '<br />' .
         // $this->t('<span style="color:red;">Allowed file extensions: ') .
       

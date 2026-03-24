@@ -52,14 +52,14 @@ class EditMscdFinalSubmissionForm extends FormBase {
       '#title' => t('Participant Name'),
       '#type' => 'textfield',
       '#disabled' => TRUE,
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#default_value' => $literature_submission_data->participant_name,
     ];
     $form['circuit_name'] = [
       '#title' => t('Circuit Name'),
       '#type' => 'textfield',
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#disabled' => TRUE,
       '#default_value' => $literature_submission_data->circuit_name,
@@ -67,7 +67,7 @@ class EditMscdFinalSubmissionForm extends FormBase {
     $form['github_repo_link'] = [
       '#type' => 'textfield',
       '#title' => t('Edit link to your GitHub repository'),
-      '#size' => 255,
+      // '#size' => 255,
       '#maxlength' => 255,
       '#default_value' => $project_files_data->github_repo_link,
       '#required' => TRUE,

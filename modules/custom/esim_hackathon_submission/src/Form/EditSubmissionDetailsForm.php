@@ -167,7 +167,7 @@ class EditSubmissionDetailsForm extends FormBase {
     $form['participant_name'] = [
       '#title' => $this->t('Participant Name'),
       '#type' => 'textfield',
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#default_value' => $submission->participant_name,
       '#required' => TRUE,
@@ -183,7 +183,7 @@ class EditSubmissionDetailsForm extends FormBase {
     $form['institute'] = [
       '#title' => $this->t('Name of the college/institute'),
       '#type' => 'textfield',
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#required' => TRUE,
       '#default_value' => $submission->institute,
@@ -192,7 +192,7 @@ class EditSubmissionDetailsForm extends FormBase {
     $form['circuit_name'] = [
       '#title' => $this->t('Circuit Name'),
       '#type' => 'textfield',
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#required' => TRUE,
       '#default_value' => $submission->circuit_name,

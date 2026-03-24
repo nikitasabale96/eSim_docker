@@ -426,7 +426,7 @@ $bcc  = \Drupal::config('lab_migration.settings')->get('lab_migration_emails');
 $cc   = \Drupal::config('lab_migration.settings')->get('lab_migration_cc_emails');
 
 // Prepare mail parameters
-$param['solution_disapproved'] = [
+$params = [
   'solution_id'       => $proposal_data->id,
   'experiment_number' => $experiment_data->number,
   'experiment_title'  => $experiment_data->title,
@@ -451,18 +451,18 @@ $langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
 // Send mail
 $mail_manager = \Drupal::service('plugin.manager.mail');
 $result = $mail_manager->mail(
-  'lab_migration',            // Module
-  'solution_disapproved',     // Mail key
-  $email_to,                  // Recipient
-  $langcode,                  // Language
-  $param,                     // Params
-  NULL,                       // Reply-to
-  TRUE                        // Send immediately
+  'lab_migration',
+  'solution_disapproved',
+  $email_to,
+  $langcode,
+  $params
 );
 
 // Error handling
-if (!$result['result']) {
+if ($result['result']) {
   \Drupal::messenger()->addMessage('Mail sent successfully.');
+} else {
+  \Drupal::messenger()->addError('Mail sending failed.');
 }
   }
           else {

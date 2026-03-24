@@ -1,5 +1,9 @@
 <?php
 
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Core\Site\Settings;
+use Drupal\Component\Utility\Html;
+
 /**
  * Implements hook_menu().
  */
@@ -406,31 +410,63 @@ function pspice_to_kicad_download_file()
 
 }
 
-function send_mail($from, $to, $subject, $message, $from1, $bcc, $cc)
-{
-    $my_module = 'pspice_to_kicad';
-    $my_mail_token = microtime();
-    $message = array(
-        'id' => $my_module . '_' . $my_mail_token,
-        'to' => $to,
-        'subject' => $subject,
-        'body' => array($message),
-        'headers' => array(
-            'From' => $from1,
-            'Return-Path' => $from1,
-            'Bcc' => $bcc,
-            'Cc' => $cc,
-        ),
-    );
-    $system = drupal_mail_system($my_module, $my_mail_token);
-    $message = $system->format($message);
-    if ($system->mail($message)) {
-        return true;
-    } else {
-        return false;
-    }
-}
+// function send_mail($from, $to, $subject, $message, $from1, $bcc, $cc)
+// {
+//     $my_module = 'pspice_to_kicad';
+//     $my_mail_token = microtime();
+//     $message = array(
+//         'id' => $my_module . '_' . $my_mail_token,
+//         'to' => $to,
+//         'subject' => $subject,
+//         'body' => array($message),
+//         'headers' => array(
+//             'From' => $from1,
+//             'Return-Path' => $from1,
+//             'Bcc' => $bcc,
+//             'Cc' => $cc,
+//         ),
+//     );
+//     $system = drupal_mail_system($my_module, $my_mail_token);
+//     $message = $system->format($message);
+//     if ($system->mail($message)) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
 
+
+function send_mail($from, $to, $subject, $message_body, $from1 = NULL, $bcc = NULL, $cc = NULL) {
+  $module = 'pspice_to_kicad';
+  $key = 'custom_mail';
+
+  $mailManager = \Drupal::service('plugin.manager.mail');
+
+  $params = [];
+  $params['subject'] = $subject;
+  $params['message'] = $message_body;
+
+  // Optional headers
+  $headers = [];
+  if ($from1) {
+    $headers['From'] = $from1;
+    $headers['Return-Path'] = $from1;
+  }
+  if ($bcc) {
+    $headers['Bcc'] = $bcc;
+  }
+  if ($cc) {
+    $headers['Cc'] = $cc;
+  }
+
+  $params['headers'] = $headers;
+
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, $from);
+
+  return $result['result'] === TRUE;
+}
 function pspice_to_kicad_convert_file()
 {
 
@@ -524,58 +560,100 @@ function pspice_to_kicad_convert_approved()
             if (file_exists($upload_root_path . $dest_path . $newuploadfilename)) {
                 unlink($upload_root_path . $dest_path . $newuploadfilename);
             }
-            $user_data = \Drupal::entityTypeManager()->getStorage('user')->load($row->uid);
-            $to = $user_data->mail;
-            // @FIXME
-// // @FIXME
-// // This looks like another module's variable. You'll need to rewrite this call
-// // to ensure that it uses the correct configuration object.
+//             $user_data = \Drupal::entityTypeManager()->getStorage('user')->load($row->uid);
+//             $to = $user_data->mail;
+//             // @FIXME
+//  // This looks like another module's variable. You'll need to rewrite this call
+//  // to ensure that it uses the correct configuration object.
 // $from = variable_get('kicad_from_email', '');
 
-            // @FIXME
-// // @FIXME
-// // This looks like another module's variable. You'll need to rewrite this call
-// // to ensure that it uses the correct configuration object.
 // $bcc = variable_get('kicad_emails', '');
 
-            // @FIXME
-// // @FIXME
-// // This looks like another module's variable. You'll need to rewrite this call
-// // to ensure that it uses the correct configuration object.
+//             // @FIXME
 // $cc = variable_get('kicad_cc_emails', '');
 
-            $subject = "[esim.in][PSpice to KiCad Converter] PSpice file converted successfully";
+//             $subject = "[esim.in][PSpice to KiCad Converter] PSpice file converted successfully";
 
-            // @FIXME
-// // @FIXME
-// // This looks like another module's variable. You'll need to rewrite this call
-// // to ensure that it uses the correct configuration object.
+// // // @FIXME
 // $email_body = "
-// 
+
 // Dear " . $user_data->name . ",
-// 
+
 // The uploaded PSpice file " . $row->upload_filename . " is successfully converted to Kicad format. This can be used in https://esim.fossee.in . You can download the converted file from https://esim.fossee.in/pspice-to-kicad/download/file/" . $fileid . "
-// 
+
 // Best Wishes,<br>
 // " . variable_get('site_name', '') . " Team,<br>
 // FOSSEE, IIT Bombay";
 
 
-            // @FIXME
-// // @FIXME
-// // This looks like another module's variable. You'll need to rewrite this call
-// // to ensure that it uses the correct configuration object.
+//             // @FIXME
+// // // @FIXME
+// // // This looks like another module's variable. You'll need to rewrite this call
+// // // to ensure that it uses the correct configuration object.
 // send_mail(variable_get('kicad_from_email', ''), $to, $subject, $email_body, $from, $bcc, $cc);
 
-        }
+//         }
 
-    } else {
+//     } else {
 
-        \Drupal::messenger()->addError('File should be converted before Publishing');
+//         \Drupal::messenger()->addError('File should be converted before Publishing');
 
+//     }
+//     drupal_goto("pspice-to-kicad/convert");
+//     return;
+
+// Load user
+$user = \Drupal::entityTypeManager()
+  ->getStorage('user')
+  ->load($row->uid);
+
+$to = $user->getEmail();
+$username = $user->getDisplayName();
+
+// Load config (replacement for variable_get)
+$config = \Drupal::config('pspice_to_kicad.settings');
+
+$from = $config->get('kicad_from_email');
+$bcc = $config->get('kicad_emails');
+$cc  = $config->get('kicad_cc_emails');
+$site_name = \Drupal::config('system.site')->get('name');
+
+// Subject
+$subject = '[esim.in][PSpice to KiCad Converter] PSpice file converted successfully';
+
+// Email body (HTML)
+$email_body = "
+Dear {$username},<br><br>
+
+The uploaded PSpice file <strong>{$row->upload_filename}</strong> is successfully converted to KiCad format.<br>
+You can use it here: <a href='https://esim.fossee.in'>https://esim.fossee.in</a><br><br>
+
+Download link:<br>
+<a href='https://esim.fossee.in/pspice-to-kicad/download/file/{$fileid}'>
+https://esim.fossee.in/pspice-to-kicad/download/file/{$fileid}
+</a><br><br>
+
+Best Wishes,<br>
+{$site_name} Team,<br>
+FOSSEE, IIT Bombay
+";
+
+// Send mail (using your updated Drupal 10 mail function)
+send_mail($from, $to, $subject, $email_body, $from, $bcc, $cc);
+
+
+// Error case
+if (!$row->is_converted) {
+  \Drupal::messenger()->addError('File should be converted before Publishing');
+}
+
+// Redirect (replacement for drupal_goto)
+$url = Url::fromUserInput('/pspice-to-kicad/convert');
+$response = new RedirectResponse($url->toString());
+$response->send();
+exit;
+}
     }
-    drupal_goto("pspice-to-kicad/convert");
-    return;
 }
 
 function pspice_to_kicad_convert_upload()

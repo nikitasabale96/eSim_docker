@@ -43,14 +43,14 @@ class EditLiteratureReportSubmissionForm extends FormBase {
       '#title' => t('Participant Name'),
       '#type' => 'textfield',
       '#disabled' => TRUE,
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#default_value' => $submission_data->participant_name,
     ];
     $form['participant_email'] = [
       '#type' => 'textfield',
       '#title' => t('Email'),
-      '#size' => 30,
+      // '#size' => 30,
       '#value' => $user->mail,
       '#disabled' => TRUE,
     ];
@@ -58,7 +58,7 @@ class EditLiteratureReportSubmissionForm extends FormBase {
       '#type' => 'textfield',
       '#title' => t('Name of the college/institute'),
       '#disabled' => TRUE,
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#required' => TRUE,
       '#default_value' => $submission_data->institute,
@@ -72,7 +72,7 @@ class EditLiteratureReportSubmissionForm extends FormBase {
     $form['circuit_name'] = [
       '#title' => t('Circuit Name'),
       '#type' => 'textfield',
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#required' => TRUE,
       '#default_value' => $submission_data->circuit_name,

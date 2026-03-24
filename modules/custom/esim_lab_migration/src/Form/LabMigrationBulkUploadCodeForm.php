@@ -102,14 +102,14 @@ var_dump($proposal_data);die;
       '#title' => t('Title of the Experiment'),
       '#options' => $experiment_rows,
       '#multiple' => FALSE,
-      '#size' => 1,
+      // '#size' => 1,
       '#required' => TRUE,
     ];
 
     $form['code_number'] = [
       '#type' => 'textfield',
       '#title' => t('Code No'),
-      '#size' => 5,
+      // '#size' => 5,
       '#maxlength' => 10,
       '#description' => t(""),
       '#required' => TRUE,
@@ -117,7 +117,7 @@ var_dump($proposal_data);die;
     $form['code_caption'] = [
       '#type' => 'textfield',
       '#title' => t('Caption'),
-      '#size' => 40,
+      // '#size' => 40,
       '#maxlength' => 255,
       '#description' => t(''),
       '#required' => TRUE,
@@ -138,7 +138,7 @@ var_dump($proposal_data);die;
     $form['sourcefile']['sourcefile1'] = [
       '#type' => 'file',
       '#title' => t('Upload main or source file'),
-      '#size' => 48,
+      // '#size' => 48,
       
       // '#description' => t('Separate filenames with underscore. No spaces or any special characters allowed in filename.') . '<br />' . t('Allowed file extensions : ') . $config->get('lab_migration_source_extensions', ''),
     ];
@@ -203,13 +203,13 @@ var_dump($proposal_data);die;
     $form['result']['result1'] = [
       '#type' => 'file',
       '#title' => t('Upload result file'),
-      '#size' => 48,
+      // '#size' => 48,
       '#description' => t('Separate filenames with underscore. No spaces or any special characters allowed in filename.') . '<br />' . t('Allowed file extensions : ') . $config->get('lab_migration_result_extensions', ''),
     ];
     $form['result']['result2'] = [
       '#type' => 'file',
       '#title' => t('Upload result file'),
-      '#size' => 48,
+      // '#size' => 48,
       '#description' => t('Separate filenames with underscore. No spaces or any special characters allowed in filename.') . '<br />' . t('Allowed file extensions : ') . $config->get('lab_migration_result_extensions', ''),
     ];
 
@@ -222,13 +222,13 @@ var_dump($proposal_data);die;
     $form['xcos']['xcos1'] = [
       '#type' => 'file',
       '#title' => t('Upload xcos file'),
-      '#size' => 48,
+      // '#size' => 48,
       '#description' => t('Separate filenames with underscore. No spaces or any special characters allowed in filename.') . '<br />' . t('Allowed file extensions : ') . $config->get('lab_migration_xcos_extensions', ''),
     ];
     $form['xcos']['xcos2'] = [
       '#type' => 'file',
       '#title' => t('Upload xcos file'),
-      '#size' => 48,
+      // '#size' => 48,
       '#description' => t('Separate filenames with underscore. No spaces or any special characters allowed in filename.') . '<br />' . t('Allowed file extensions : ') . $config->get('lab_migration_xcos_extensions', ''),
     ];
 

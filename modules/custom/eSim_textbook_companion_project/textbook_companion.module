@@ -1176,21 +1176,21 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['full_name'] = array(
     '#type' => 'textfield',
     '#title' => t('Full Name'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
   );
   $form['email_id'] = array(
     '#type' => 'textfield',
     '#title' => t('Email'),
-    '#size' => 30,
+     // '#size' => 30,
     '#value' => $user->mail,
     '#disabled' => TRUE,
   );
   $form['mobile'] = array(
     '#type' => 'textfield',
     '#title' => t('Mobile No.'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 15,
     '#required' => TRUE,
   );
@@ -1215,7 +1215,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['course'] = array(
     '#type' => 'textfield',
     '#title' => t('Course'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
   );
@@ -1228,7 +1228,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['university'] = array(
     '#type' => 'textfield',
     '#title' => t('University/Institute'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE, 
     '#attributes' =>array('placeholder' =>'Insert full name of your institute/ university. '),
@@ -1247,7 +1247,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['other_country'] = array(
     '#type' => 'textfield',
     '#title' => t('Other than India'),
-    '#size' => 100,
+     // '#size' => 100,
     '#attributes' =>array('placeholder' => t('Enter your country name')),
     '#states' => array(
       'visible' => array(
@@ -1258,7 +1258,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['other_state'] = array(
     '#type' => 'textfield',
     '#title' => t('State other than India'),
-    '#size' => 100,
+     // '#size' => 100,
     '#attributes' =>array('placeholder' => t('Enter your state/region name')),
     '#states' => array(
       'visible' => array(
@@ -1269,7 +1269,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['other_city'] = array(
     '#type' => 'textfield',
     '#title' => t('City other than India'),
-    '#size' => 100,
+     // '#size' => 100,
     '#attributes' =>array('placeholder' => t('Enter your city name')),
     '#states' => array(
       'visible' => array(
@@ -1301,7 +1301,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['pincode'] = array(
     '#type' => 'textfield',
     '#title' => t('Pincode'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 6,
     '#required' => False,
     '#attributes' =>array('placeholder' =>'Enter pincode....'),
@@ -1317,7 +1317,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
     '#type' => 'hidden',
     '#value' => 'None',
     '#title' => t('College Teacher/Professor'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
   );
@@ -1326,14 +1326,14 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
     '#value' => 'None',
     '#title' => t('Teacher/Professor Email Id'),
     '#default_value' => '@email.com',
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
   );
   $form['reviewer'] = array(
     '#type' => 'hidden',
     '#value' => 'None',
     '#title' => t('Reviewer'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
   );
   $form['version'] = array(
@@ -1344,7 +1344,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   );
   $form['older'] = array(
     '#type' => 'textfield',
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     //'#required' => TRUE,
     '#description' => t('Specify the Older version used'),
@@ -1353,21 +1353,21 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
     '#type' => 'textfield',
     '#title' => t('Expected Date of Completion'),
     '#description' => t('Input date format should be DD-MM-YYYY. Eg: 23-03-2011'),
-    '#size' => 10,
+     // '#size' => 10,
     '#maxlength' => 10,
   );
   $form['operating_system'] = array(
     '#type' => 'textfield',
     '#title' => t('Operating System'),
     '#required' => TRUE,
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
   );
   /*$form['scilab_version'] = array(
     '#type' => 'textfield',
     '#title' => t('Scilab Version'),
     '#required' => TRUE,
-    '#size' => 10,
+     // '#size' => 10,
     '#maxlength' => 10,
   );*/
   $form['preference1'] = array(
@@ -1379,7 +1379,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference1']['book1'] = array(
     '#type' => 'textfield',
     '#title' => t('Title of the book'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row1->book,
@@ -1388,7 +1388,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference1']['author1'] = array(
     '#type' => 'textfield',
     '#title' => t('Author Name'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row1->author,
@@ -1397,7 +1397,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference1']['isbn1'] = array(
     '#type' => 'textfield',
     '#title' => t('ISBN No'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 25,
     '#required' => TRUE,
     '#default_value' => $row1->isbn,
@@ -1406,7 +1406,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference1']['publisher1'] = array(
     '#type' => 'textfield',
     '#title' => t('Publisher & Place'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
     '#default_value' => $row1->publisher,
@@ -1414,7 +1414,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference1']['edition1'] = array(
     '#type' => 'textfield',
     '#title' => t('Edition'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 2,
     '#required' => TRUE,
     '#default_value' => $row1->edition,
@@ -1422,7 +1422,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference1']['year1'] = array(
     '#type' => 'textfield',
     '#title' => t('Year of pulication'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 4,
     '#required' => TRUE,
     '#default_value' => $row1->year,
@@ -1436,7 +1436,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference2']['book2'] = array(
     '#type' => 'textfield',
     '#title' => t('Title of the book'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row2->book,
@@ -1445,7 +1445,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference2']['author2'] = array(
     '#type' => 'textfield',
     '#title' => t('Author Name'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row2->author,
@@ -1454,7 +1454,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference2']['isbn2'] = array(
     '#type' => 'textfield',
     '#title' => t('ISBN No'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 25,
     '#required' => TRUE,
     '#default_value' => $row2->isbn,
@@ -1463,7 +1463,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference2']['publisher2'] = array(
     '#type' => 'textfield',
     '#title' => t('Publisher & Place'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
     '#default_value' => $row2->publisher,
@@ -1471,7 +1471,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference2']['edition2'] = array(
     '#type' => 'textfield',
     '#title' => t('Edition'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 2,
     '#required' => TRUE,
     '#default_value' => $row2->edition,
@@ -1479,7 +1479,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference2']['year2'] = array(
     '#type' => 'textfield',
     '#title' => t('Year of pulication'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 4,
     '#required' => TRUE,
     '#default_value' => $row2->year,
@@ -1493,7 +1493,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference3']['book3'] = array(
     '#type' => 'textfield',
     '#title' => t('Title of the book'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row3->book,
@@ -1502,7 +1502,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference3']['author3'] = array(
     '#type' => 'textfield',
     '#title' => t('Author Name'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row3->author,
@@ -1511,7 +1511,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference3']['isbn3'] = array(
     '#type' => 'textfield',
     '#title' => t('ISBN No'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 25,
     '#required' => TRUE,
     '#default_value' => $row3->isbn,
@@ -1520,7 +1520,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference3']['publisher3'] = array(
     '#type' => 'textfield',
     '#title' => t('Publisher & Place'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
     '#default_value' => $row3->publisher,
@@ -1528,7 +1528,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference3']['edition3'] = array(
     '#type' => 'textfield',
     '#title' => t('Edition'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 2,
     '#required' => TRUE,
     '#default_value' => $row3->edition,
@@ -1536,7 +1536,7 @@ function book_proposal_form($form_state, $row1=NULL, $row2=NULL, $row3=NULL)
   $form['preference3']['year3'] = array(
     '#type' => 'textfield',
     '#title' => t('Year of pulication'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 4,
     '#required' => TRUE,
     '#default_value' => $row3->year,
@@ -1557,7 +1557,7 @@ $form['samplefile'] = array(
   $form['samplefile']['samplefile1'] = array(
       '#type' => 'file',
       '#title' => t('Upload sample source file'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t('Separate filenames with underscore. No spaces or any special characters allowed in filename.') . '<br />' .
       t('<span style="color:red;">Allowed file extensions : ') . \Drupal::config('textbook_companion.settings')->get('textbook_companion_source_extensions').'</span>',
      
@@ -3671,21 +3671,21 @@ function book_proposal_nonaicte_form($form_state)
   $form['full_name'] = array(
     '#type' => 'textfield',
     '#title' => t('Full Name'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
   );
   $form['email_id'] = array(
     '#type' => 'textfield',
     '#title' => t('Email'),
-    '#size' => 30,
+     // '#size' => 30,
     '#value' => $user->mail,
     '#disabled' => TRUE,
   );
   $form['mobile'] = array(
     '#type' => 'textfield',
     '#title' => t('Mobile No.'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 15,
     '#required' => TRUE,
   );
@@ -3710,7 +3710,7 @@ function book_proposal_nonaicte_form($form_state)
   $form['course'] = array(
     '#type' => 'textfield',
     '#title' => t('Course'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
   );
@@ -3734,14 +3734,14 @@ function book_proposal_nonaicte_form($form_state)
   $form['university'] = array(
     '#type' => 'textfield',
     '#title' => t('University/Institute'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
   );
 $form['city'] = array(
     '#type' => 'textfield',
     '#title' => t('City'),
-    '#size' => 80,
+     // '#size' => 80,
     '#maxlength' => 150,
     '#required' => TRUE,
     '#attributes' =>array('placeholder' =>'Enter City'),
@@ -3749,7 +3749,7 @@ $form['city'] = array(
 $form['pincode'] = array(
     '#type' => 'textfield',
     '#title' => t('Pincode'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 6,
     '#required' => TRUE,
     '#attributes' =>array('placeholder' =>'Enter Pincode'),
@@ -3806,7 +3806,7 @@ $form['all_state'] = array(
     '#type' => 'hidden',
     '#value' => 'None',
     '#title' => t('College Teacher/Professor'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
   );
@@ -3815,14 +3815,14 @@ $form['all_state'] = array(
     '#value' => 'None',
     '#title' => t('Teacher/Professor Email Id'),
     '#default_value' => '@email.com',
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
   );
   $form['reviewer'] = array(
     '#type' => 'hidden',
     '#value' => 'None',
     '#title' => t('Reviewer'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
   );
   $form['version'] = array(
@@ -3834,7 +3834,7 @@ $form['all_state'] = array(
   );
   $form['older'] = array(
     '#type' => 'textfield',
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     //'#required' => TRUE,
     '#description' => t('Specify the Older version used'),
@@ -3843,7 +3843,7 @@ $form['all_state'] = array(
     '#type' => 'textfield',
     '#title' => t('Expected Date of Completion'),
     '#description' => t('Input date format should be DD-MM-YYYY. Eg: 23-03-2011'),
-    '#size' => 10,
+     // '#size' => 10,
     '#maxlength' => 10,
     '#required' => TRUE,
   );
@@ -3851,7 +3851,7 @@ $form['all_state'] = array(
     '#type' => 'textfield',
     '#title' => t('Operating System'),
     '#required' => TRUE,
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
   );
 
@@ -3869,7 +3869,7 @@ $form['all_state'] = array(
   );
     $form['other_reason'] = array(
     '#type' => 'textarea',    
-    '#size' => 300,    
+     // '#size' => 300,    
     '#maxlength' => 300,
     //'#required' => FALSE,
   );
@@ -3882,7 +3882,7 @@ $form['all_state'] = array(
     '#type' => 'textarea',
     '#title' => t('Reference'),
     '#required' => TRUE,
-    '#size' => 500,
+     // '#size' => 500,
     '#maxlength' => 500,
     '#attributes' =>array('placeholder' =>'Links of the syllabus must be provided....'),
   );
@@ -3895,7 +3895,7 @@ $form['all_state'] = array(
   $form['preference1']['book1'] = array(
     '#type' => 'textfield',
     '#title' => t('Title of the book'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row1->book,
@@ -3904,7 +3904,7 @@ $form['all_state'] = array(
   $form['preference1']['author1'] = array(
     '#type' => 'textfield',
     '#title' => t('Author Name'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 100,
     '#required' => TRUE,
     '#default_value' => $row1->author,
@@ -3913,7 +3913,7 @@ $form['all_state'] = array(
   $form['preference1']['isbn1'] = array(
     '#type' => 'textfield',
     '#title' => t('ISBN No'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 25,
     '#required' => TRUE,
     '#default_value' => $row1->isbn,
@@ -3922,7 +3922,7 @@ $form['all_state'] = array(
   $form['preference1']['publisher1'] = array(
     '#type' => 'textfield',
     '#title' => t('Publisher & Place'),
-    '#size' => 30,
+     // '#size' => 30,
     '#maxlength' => 50,
     '#required' => TRUE,
     '#default_value' => $row1->publisher,
@@ -3930,7 +3930,7 @@ $form['all_state'] = array(
   $form['preference1']['edition1'] = array(
     '#type' => 'textfield',
     '#title' => t('Edition'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 2,
     '#required' => TRUE,
     '#default_value' => $row1->edition,
@@ -3938,7 +3938,7 @@ $form['all_state'] = array(
   $form['preference1']['year1'] = array(
     '#type' => 'textfield',
     '#title' => t('Year of pulication'),
-    '#size' => 4,
+     // '#size' => 4,
     '#maxlength' => 4,
     '#required' => TRUE,
     '#default_value' => $row1->year,

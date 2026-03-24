@@ -296,18 +296,33 @@ $return_html = '<strong>Proposer Name:</strong><br />' . $abstracts_pro->name_ti
 $email_to = $user_data->getEmail();
 
 $config = \Drupal::config('circuit_simulation.settings');
+
 $from = $config->get('circuit_simulation_from_email');
-$bcc  = $config->get('circuit_simulation_emails');
 $cc   = $config->get('circuit_simulation_cc_emails');
+$bcc  = $config->get('circuit_simulation_emails');
 
-/* Passing parameters to hook_mail() */
-$params['solution_approved']['subject'] = $email_subject;
-$params['solution_approved']['body'] = $email_body;
+// Ensure valid values
+if (empty($from)) {
+  $from = \Drupal::config('system.site')->get('mail');
+}
 
-$params['solution_approved']['headers'] = [
-  'From' => $from,
-  'Cc' => $cc,
-  'Bcc' => $bcc,
+$cc  = is_array($cc) ? implode(',', $cc) : $cc;
+$bcc = is_array($bcc) ? implode(',', $bcc) : $bcc;
+
+// Build headers safely
+$headers = ['From' => $from];
+
+if (!empty($cc)) {
+  $headers['Cc'] = $cc;
+}
+if (!empty($bcc)) {
+  $headers['Bcc'] = $bcc;
+}
+
+$params['solution_approved'] = [
+  'subject' => $email_subject,
+  'body' => $email_body,
+  'headers' => $headers,
 ];
 
 $langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();

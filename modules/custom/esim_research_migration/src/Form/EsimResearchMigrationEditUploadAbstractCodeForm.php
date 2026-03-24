@@ -58,7 +58,7 @@ class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
       '#markup' => $proposal_data->contributor_name,
       '#title' => t('Contributor Name'),
     ];
-    $existing_uploaded_A_file = default_value_for_uploaded_files("A", $proposal_data->id);
+    $existing_uploaded_A_file = $this->default_value_for_uploaded_files("A", $proposal_data->id);
     if (!$existing_uploaded_A_file) {
       $existing_uploaded_A_file = new stdClass();
       $existing_uploaded_A_file->filename = "No file uploaded";
@@ -73,7 +73,7 @@ class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
       '#description' => t('Current File: @file', ['@file' => $existing_uploaded_A_file->filename]) . '<br />' . t('Allowed file extensions: @ext', ['@ext' => $synopsis_extensions]),
     ];
 
-    $existing_uploaded_S_file = default_value_for_uploaded_files("S", $proposal_data->id);
+    $existing_uploaded_S_file = $this->default_value_for_uploaded_files("S", $proposal_data->id);
     if (!$existing_uploaded_S_file) {
       $existing_uploaded_S_file = new stdClass();
       $existing_uploaded_S_file->filename = "No file uploaded";
@@ -92,7 +92,7 @@ class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
       '#type' => 'submit',
       '#value' => t('Submit'),
       '#submit' => [
-        'esim_research_migration_edit_upload_abstract_code_form_submit'
+        // 'esim_research_migration.edit_upload_abstract_code_form'
         ],
     ];
     // @FIXME
@@ -104,6 +104,25 @@ class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
 
     return $form;
   }
+
+   public function default_value_for_uploaded_files($filetype, $proposal_id)
+{
+    $query = \Drupal::database()->select('research_migration_submitted_abstracts_file');
+    $query->fields('research_migration_submitted_abstracts_file');
+    $query->condition('proposal_id', $proposal_id);
+    $selected_files_array = "";
+    if ($filetype == "S") {
+        $query->condition('filetype', $filetype);
+        $filetype_q = $query->execute()->fetchObject();
+        return $filetype_q;
+    } elseif ($filetype == "A") {
+        $query->condition('filetype', $filetype);
+        $filetype_q = $query->execute()->fetchObject();
+        return $filetype_q;
+    }
+    return;
+}
+
 
   public function validateForm(array &$form, FormStateInterface $form_state) {
 

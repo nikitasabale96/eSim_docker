@@ -231,7 +231,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
     // $user = \Drupal::currentUser();
     $uid = \Drupal::currentUser()->id();
 
-    $root_path = lab_migration_samplecode_path();
+    $root_path = \Drupal::service("lab_migration_global")->lab_migration_samplecode_path();
     // $proposal_id = (int) arg(2);
     $route_match = \Drupal::routeMatch();
 

@@ -5,6 +5,8 @@ hackathon_submission.display_my_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::hackathon_submission_display_my_submissions'
   requirements:
     _permission: 'access hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.completed_circuits:
   path: /hackathon/completed-circuits
   defaults:
@@ -12,6 +14,8 @@ hackathon_submission.completed_circuits:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::hackathon_submission_completed_circuits'
   requirements:
     _permission: 'download completed circuit'
+  options:
+    no_cache: TRUE
 hackathon_submission.download_hackathon_final_submission_form:
   path: /hackathon/download/completed-circuits/{submission_id?}
   defaults:
@@ -26,6 +30,8 @@ hackathon_submission.display_final_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::hackathon_submission_display_final_submissions'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.display_all_submissions:
   path: /hackathon-submission/all-submissions/literature-survey
   defaults:
@@ -33,6 +39,8 @@ hackathon_submission.display_all_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::hackathon_submission_display_all_submissions'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.view_final_submissions_details_form:
   path: /hackathon-submission/view-details/final-submission/{submission_id?}
   defaults:
@@ -47,6 +55,8 @@ hackathon_submission.download_emails:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::hackathon_submission_download_emails'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.download_project_files:
   path: /hackathon-submission/download/project-files/{submission_id?}
   defaults:
@@ -54,6 +64,8 @@ hackathon_submission.download_project_files:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::hackathon_submission_download_project_files'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.download_completed_circuit:
   path: /hackathon-submission/download/final-submission/{submission_id?}
   defaults:
@@ -61,6 +73,8 @@ hackathon_submission.download_completed_circuit:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::hackathon_submission_download_completed_circuit'
   requirements:
     _permission: 'download completed circuit'
+  options:
+    no_cache: TRUE
 hackathon_submission.create_zip_of_all_files:
   path: /hackathon-submission/download/all-files
   defaults:
@@ -68,6 +82,8 @@ hackathon_submission.create_zip_of_all_files:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::create_zip_of_all_files'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.download_literature_survey_report:
   path: /hackathon-submission/generate-report/literature-survey/{submission_id?}
   defaults:
@@ -75,6 +91,8 @@ hackathon_submission.download_literature_survey_report:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::download_literature_survey_report'
   requirements:
     _permission: 'access hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.download_final_submission_report:
   path: /hackathon-submission/generate-report/final-submission/{submission_id?}
   defaults:
@@ -82,6 +100,8 @@ hackathon_submission.download_final_submission_report:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::download_final_submission_report'
   requirements:
     _permission: 'access hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.add_literature_report_submission:
   path: /hackathon-submission/add/literature-report
   defaults:
@@ -89,6 +109,8 @@ hackathon_submission.add_literature_report_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::add_literature_report_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.add_final_submission_report_submission:
   path: /hackathon-submission/add/final-submission
   defaults:
@@ -96,6 +118,8 @@ hackathon_submission.add_final_submission_report_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::add_final_submission_report_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.add_project_files_submission:
   path: /hackathon-submission/add/project-files
   defaults:
@@ -103,6 +127,8 @@ hackathon_submission.add_project_files_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::add_project_files_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.edit_submission_details_form:
   path: /hackathon-submission/manage/edit-submission/{submission_id?}
   defaults:
@@ -145,6 +171,8 @@ hackathon_submission.add_mscd_literature_report_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::add_mscd_literature_report_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.add_mscd_final_report_submission:
   path: /mixed-signal-design-marathon/add/final-submission
   defaults:
@@ -152,6 +180,8 @@ hackathon_submission.add_mscd_final_report_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::add_mscd_final_report_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.edit_mscd_final_submission_form:
   path: /mixed-signal-design-marathon/edit/final-submission
   defaults:
@@ -166,6 +196,8 @@ hackathon_submission.mscd_submission_display_my_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::mscd_submission_display_my_submissions'
   requirements:
     _permission: 'access hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.edit_mscd_literature_report_submission_form:
   path: /mixed-signal-design-marathon/edit/literature-report
   defaults:
@@ -194,6 +226,8 @@ hackathon_submission.mscd_display_final_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::mscd_display_final_submissions'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.mscd_display_literature_submissions:
   path: /mixed-signal-design-marathon/all-submissions/literature-survey
   defaults:
@@ -201,6 +235,8 @@ hackathon_submission.mscd_display_literature_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::mscd_display_literature_submissions'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.mscd_download_literature_report:
   path: /mixed-signal-design-marathon/download/literature-report/{submission_id?}
   defaults:
@@ -208,6 +244,8 @@ hackathon_submission.mscd_download_literature_report:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::mscd_download_literature_report'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.mscd_download_final_submission:
   path: /mixed-signal-design-marathon/download/final-submission/{submission_id?}
   defaults:
@@ -215,6 +253,8 @@ hackathon_submission.mscd_download_final_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::mscd_download_final_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.mscd_hackathon_submission_download_completed_circuit:
   path: /mixed-signal-design-marathon/download/completed-circuit
   defaults:
@@ -222,6 +262,8 @@ hackathon_submission.mscd_hackathon_submission_download_completed_circuit:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::mscd_hackathon_submission_download_completed_circuit'
   requirements:
     _permission: 'download completed circuit'
+  options:
+    no_cache: TRUE
 hackathon_submission.download_mscd_final_submission_form:
   path: /mixed-signal-design-marathon/download/circuits/{submission_id?}
   defaults:
@@ -236,6 +278,8 @@ hackathon_submission.mscd_download_emails:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::mscd_download_emails'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.soc_marathon_download_completed_circuit:
   path: /mixed-signal-soc-design-marathon/completed-circuits
   defaults:
@@ -243,6 +287,8 @@ hackathon_submission.soc_marathon_download_completed_circuit:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::soc_marathon_download_completed_circuit'
   requirements:
     _permission: 'download completed circuit'
+  options:
+    no_cache: TRUE
 hackathon_submission.download_soc_marathon_final_submission_form:
   path: /mixed-signal-soc-design-marathon/download/circuits/{submission_id?}
   defaults:
@@ -257,6 +303,8 @@ hackathon_submission.add_soc_literature_report_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::add_soc_literature_report_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.soc_marathon_submission_display_my_submissions:
   path: /mixed-signal-soc-design-marathon/proposed
   defaults:
@@ -264,6 +312,8 @@ hackathon_submission.soc_marathon_submission_display_my_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::soc_marathon_submission_display_my_submissions'
   requirements:
     _permission: 'access hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.view_soc_marathon_literature_report_submission_form:
   path: /mixed-signal-soc-design-marathon/view/literature-report/{submission_id?}
   defaults:
@@ -285,6 +335,8 @@ hackathon_submission.soc_marathon_download_literature_report:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::soc_marathon_download_literature_report'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.soc_marathon_display_final_submissions:
   path: /mixed-signal-soc-design-marathon/all-submissions/final-submissions
   defaults:
@@ -292,6 +344,8 @@ hackathon_submission.soc_marathon_display_final_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::soc_marathon_display_final_submissions'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.soc_marathon_display_literature_submissions:
   path: /mixed-signal-soc-design-marathon/all-submissions/literature-survey
   defaults:
@@ -299,6 +353,8 @@ hackathon_submission.soc_marathon_display_literature_submissions:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::soc_marathon_display_literature_submissions'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.soc_marathon_download_emails:
   path: /mixed-signal-soc-design-marathon/download-emails
   defaults:
@@ -306,6 +362,8 @@ hackathon_submission.soc_marathon_download_emails:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::soc_marathon_download_emails'
   requirements:
     _permission: 'manage hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.add_soc_marathon_final_report_submission:
   path: /mixed-signal-soc-design-marathon/add/final-submission
   defaults:
@@ -313,6 +371,8 @@ hackathon_submission.add_soc_marathon_final_report_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::add_soc_marathon_final_report_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE
 hackathon_submission.view_soc_marathon_final_submission_form:
   path: /mixed-signal-soc-design-marathon/view/final-submission/{submission_id?}
   defaults:
@@ -334,3 +394,5 @@ hackathon_submission.soc_marathon_download_final_submission:
     _controller: '\Drupal\hackathon_submission\Controller\DefaultController::soc_marathon_download_final_submission'
   requirements:
     _permission: 'add hackathon_submission'
+  options:
+    no_cache: TRUE

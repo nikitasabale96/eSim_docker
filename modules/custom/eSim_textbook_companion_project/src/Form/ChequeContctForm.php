@@ -39,7 +39,7 @@ class ChequeContctForm extends FormBase {
       $form['search'] = [
         '#type' => 'textfield',
         '#title' => t('Search'),
-        '#size' => 48,
+         // '#size' => 48,
       ];
 
       $form['submit'] = [
@@ -195,14 +195,14 @@ class ChequeContctForm extends FormBase {
         $form['full_name'] = [
           '#type' => 'textfield',
           '#title' => t('Full Name'),
-          '#size' => 30,
+           // '#size' => 30,
           '#maxlength' => 50,
           '#default_value' => $form9,
         ];
         $form['mobile'] = [
           '#type' => 'textfield',
           '#title' => t('Mobile No.'),
-          '#size' => 30,
+           // '#size' => 30,
           '#maxlength' => 15,
           '#default_value' => $form10,
         ];
@@ -222,7 +222,7 @@ class ChequeContctForm extends FormBase {
         $form['course'] = [
           '#type' => 'textfield',
           '#title' => t('Course'),
-          '#size' => 30,
+           // '#size' => 30,
           '#maxlength' => 50,
           '#default_value' => $form11,
         ];
@@ -247,7 +247,7 @@ class ChequeContctForm extends FormBase {
         $form['university'] = [
           '#type' => 'textfield',
           '#title' => t('University/Institute'),
-          '#size' => 30,
+           // '#size' => 30,
           '#maxlength' => 100,
           '#default_value' => $form13,
         ];
@@ -255,7 +255,7 @@ class ChequeContctForm extends FormBase {
           '#type' => 'textfield',
           '#title' => t('Address For Mailing Cheque'),
           //'#required' => TRUE,
-				'#size' => 30,
+				 // '#size' => 30,
           '#maxlength' => 100,
         ];
         $form['submit'] = [

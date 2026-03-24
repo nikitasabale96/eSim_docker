@@ -52,14 +52,14 @@ class EditProjectFilesForm extends FormBase {
       '#title' => t('Participant Name'),
       '#type' => 'textfield',
       '#disabled' => TRUE,
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#default_value' => $literature_submission_data->participant_name,
     ];
     $form['circuit_name'] = [
       '#title' => t('Circuit Name'),
       '#type' => 'textfield',
-      '#size' => 70,
+      // '#size' => 70,
       '#maxlength' => 70,
       '#disabled' => TRUE,
       '#default_value' => $literature_submission_data->circuit_name,

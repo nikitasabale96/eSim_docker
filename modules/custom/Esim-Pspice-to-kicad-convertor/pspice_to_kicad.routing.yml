@@ -5,6 +5,8 @@ pspice_to_kicad.list:
     _title: 'List of converted files from PSPICE to KICAD'
   requirements:
     _permission: 'access pspice_to_kicad'
+  options:
+    no_cache: TRUE
 
 pspice_to_kicad.description:
   path: '/pspice-to-kicad/description/{id}'
@@ -13,7 +15,8 @@ pspice_to_kicad.description:
     _title: 'More Details'
   requirements:
     _permission: 'access pspice_to_kicad'
-    id: '\d+'
+  options:
+    no_cache: TRUE
 
 pspice_to_kicad.add:
   path: '/pspice-to-kicad/add'
@@ -29,7 +32,8 @@ pspice_to_kicad.your_upload:
     _controller: '\Drupal\pspice_to_kicad\Controller\DefaultController::pspice_to_kicad_your_uploaded_file'
   requirements:
     _permission: 'manage pspice_to_kicad'
-
+  options:
+    no_cache: TRUE
 pspice_to_kicad.convert_list:
   path: '/pspice-to-kicad/convert'
   defaults:
@@ -37,23 +41,24 @@ pspice_to_kicad.convert_list:
     _title: 'Files to Be Converted'
   requirements:
     _permission: 'convert pspice_to_kicad'
-
+  options:
+    no_cache: TRUE
 pspice_to_kicad.download_file:
   path: '/pspice-to-kicad/download/file/{id}'
   defaults:
     _controller: '\Drupal\pspice_to_kicad\Controller\DefaultController::pspice_to_kicad_download_file'
   requirements:
     _permission: 'access pspice_to_kicad'
-    id: '\d+'
-
+  options:
+    no_cache: TRUE
 pspice_to_kicad.download_pdf:
   path: '/pspice-to-kicad/download/pdf/{id}'
   defaults:
     _controller: '\Drupal\pspice_to_kicad\Controller\DefaultController::pspice_to_kicad_download_pdf_file'
   requirements:
     _permission: 'access pspice_to_kicad'
-    id: '\d+'
-
+  options:
+    no_cache: TRUE
 pspice_to_kicad.delete_file:
   path: '/pspice-to-kicad/delete/file/{id}'
   defaults:
@@ -61,7 +66,6 @@ pspice_to_kicad.delete_file:
     _title: 'Delete File'
   requirements:
     _permission: 'delete pspice_to_kicad file'
-    id: '\d+'
 
 pspice_to_kicad.convert_upload:
   path: '/pspice-to-kicad/convert/upload/{id}'
@@ -70,7 +74,6 @@ pspice_to_kicad.convert_upload:
     _title: 'Upload Converted File'
   requirements:
     _permission: 'convert pspice_to_kicad'
-    id: '\d+'
 
 pspice_to_kicad.settings:
   path: '/admin/settings/pspice-to-kicad'
@@ -87,7 +90,8 @@ pspice_to_kicad.convert_file:
     _title: 'Convert PSPICE file'
   requirements:
     _permission: 'access content'
-
+  options:
+    no_cache: TRUE
 pspice_to_kicad.convert_approved:
   path: '/pspice-to-kicad/convert/approved/{fileid}'
   defaults:
@@ -95,4 +99,5 @@ pspice_to_kicad.convert_approved:
     _title: 'Approve Converted File'
   requirements:
     _permission: 'convert pspice_to_kicad'
-    fileid: '\d+'
+  options:
+    no_cache: TRUE

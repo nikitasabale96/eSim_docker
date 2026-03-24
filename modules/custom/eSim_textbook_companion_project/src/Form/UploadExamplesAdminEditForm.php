@@ -211,7 +211,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['example_caption'] = [
       '#type' => 'textfield',
       '#title' => t('Caption'),
-      '#size' => 40,
+       // '#size' => 40,
       '#maxlength' => 255,
       '#required' => TRUE,
       '#default_value' => $example_data->caption,
@@ -243,7 +243,7 @@ class UploadExamplesAdminEditForm extends FormBase {
       $form['sourcefile']['sourcefile1'] = [
         '#type' => 'file',
         '#title' => t('Upload New Main or Source File'),
-        '#size' => 48,
+         // '#size' => 48,
         '#description' => t("Upload new Main or Source file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . t('Allowed file extensions : ') . \Drupal::config('textbook_companion.settings')->get('textbook_companion_source_extensions'),
       ];
       $form['sourcefile']['cur_source_file_id'] = [
@@ -255,7 +255,7 @@ class UploadExamplesAdminEditForm extends FormBase {
       $form['sourcefile']['sourcefile1'] = [
         '#type' => 'file',
         '#title' => t('Upload New Main or Source File'),
-        '#size' => 48,
+         // '#size' => 48,
         '#description' => t('Allowed file extensions : ') . \Drupal::config('textbook_companion.settings')->get('textbook_companion_source_extensions'),
       ];
     }
@@ -341,7 +341,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['result']['result1'] = array(
       '#type' => 'file',
       '#title' => t('Upload New Result File 1'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t("Upload new Result file above if you want to replace the existing file, leave blank if you want to keep using the existing file. <br />") .
         t('Allowed file extensions : ') . variable_get('textbook_companion_result_extensions', ''),
     );
@@ -353,7 +353,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['result']['result1'] = array(
       '#type' => 'file',
       '#title' => t('Upload New Result File 1'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t('Allowed file extensions : ') . variable_get('textbook_companion_result_extensions', ''),
     );
   }
@@ -378,7 +378,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['result']['result2'] = array(
       '#type' => 'file',
       '#title' => t('Upload New Result file 2'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t("Upload new Result file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . 
         t('Allowed file extensions : ') . variable_get('textbook_companion_result_extensions', ''),
     );
@@ -390,7 +390,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['result']['result2'] = array(
       '#type' => 'file',
       '#title' => t('Upload New Result file 2'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t('Allowed file extensions : ') . variable_get('textbook_companion_result_extensions', ''),
     );
   }
@@ -415,7 +415,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['xcos']['xcos1'] = array(
       '#type' => 'file',
       '#title' => t('Upload New xcos file 1'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t("Upload new xcos file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") .
         t('Allowed file extensions : ') . variable_get('textbook_companion_xcos_extensions', ''),
     );
@@ -427,7 +427,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['xcos']['xcos1'] = array(
       '#type' => 'file',
       '#title' => t('Upload New xcos file 1'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t('Allowed file extensions : ') . variable_get('textbook_companion_xcos_extensions', ''),
     );
   }
@@ -452,7 +452,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['xcos']['xcos2'] = array(
       '#type' => 'file',
       '#title' => t('Upload New xcos file 2'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' =>  t("Upload new xcos file above if you want to replace the existing file. Leave blank if you want to keep using the existing file. <br />") . 
         t('Allowed file extensions : ') . variable_get('textbook_companion_xcos_extensions', ''),
     );
@@ -464,7 +464,7 @@ class UploadExamplesAdminEditForm extends FormBase {
     $form['xcos']['xcos2'] = array(
       '#type' => 'file',
       '#title' => t('Upload New xcos file 2'),
-      '#size' => 48,
+       // '#size' => 48,
       '#description' => t('Allowed file extensions : ') . variable_get('textbook_companion_xcos_extensions', ''),
     );
   }

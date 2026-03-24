@@ -5,6 +5,8 @@ textbook_companion.proposal_all:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_proposal_all'
   requirements:
     _permission: 'create book proposal'
+  options:
+    no_cache: TRUE
 textbook_companion.aicte_proposal_all:
   path: /textbook-companion/all_proposal
   defaults:
@@ -12,6 +14,8 @@ textbook_companion.aicte_proposal_all:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_aicte_proposal_all'
   requirements:
     _permission: 'create book proposal'
+  options:
+    no_cache: TRUE
 textbook_companion._proposal_pending:
   path: /textbook-companion/manage-proposal/pending
   defaults:
@@ -19,6 +23,8 @@ textbook_companion._proposal_pending:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::_proposal_pending'
   requirements:
     _permission: 'approve book proposal'
+  options:
+    no_cache: TRUE
 textbook_companion._proposal_all:
   path: /textbook-companion/manage-proposal/all
   defaults:
@@ -26,6 +32,8 @@ textbook_companion._proposal_all:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::_proposal_all'
   requirements:
     _permission: 'approve book proposal'
+  options:
+    no_cache: TRUE
 textbook_companion._failed_all:
   path: /textbook-companion/manage-proposal/failed
   defaults:
@@ -33,6 +41,8 @@ textbook_companion._failed_all:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::_failed_all'
   requirements:
     _permission: 'approve book proposal'
+  options:
+    no_cache: TRUE
 textbook_companion.proposal_approval_form:
   path: /textbook-companion/manage-proposal/approve
   defaults:
@@ -61,6 +71,8 @@ textbook_companion.code_approval:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::code_approval'
   requirements:
     _permission: 'approve code'
+  options:
+    no_cache: TRUE
 textbook_companion.code_approval_form:
   path: /textbook-companion/code-approval/approve
   defaults:
@@ -96,6 +108,8 @@ textbook_companion.list_chapters:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::list_chapters'
   requirements:
     _permission: 'upload code'
+  options:
+    no_cache: TRUE
 textbook_companion.upload_examples:
   path: /textbook-companion/code/upload
   defaults:
@@ -103,6 +117,8 @@ textbook_companion.upload_examples:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::upload_examples'
   requirements:
     _permission: 'upload code'
+  options:
+    no_cache: TRUE
 textbook_companion.upload_examples_edit_form:
   path: /textbook-companion/code/edit
   defaults:
@@ -117,6 +133,8 @@ textbook_companion._upload_examples_delete:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::_upload_examples_delete'
   requirements:
     _permission: 'upload code'
+  options:
+    no_cache: TRUE
 textbook_companion.edit_chapter_title_form:
   path: /textbook-companion/code/chapter/edit
   defaults:
@@ -131,6 +149,8 @@ textbook_companion.list_examples:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::list_examples'
   requirements:
     _permission: 'upload code'
+  options:
+    no_cache: TRUE
 textbook_companion.search_form:
   path: /textbook-companion/textbook-search/search
   defaults:
@@ -145,6 +165,8 @@ textbook_companion.browse_book:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_browse_book'
   requirements:
     _permission: 'access content'
+  options:
+    no_cache: TRUE
 textbook_companion.browse_author:
   path: /textbook-companion/textbook-search/author
   defaults:
@@ -152,6 +174,8 @@ textbook_companion.browse_author:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_browse_author'
   requirements:
     _permission: 'access content'
+  options:
+    no_cache: TRUE
 textbook_companion.browse_college_form:
   path: /textbook-companion/textbook-search/college
   defaults:
@@ -166,6 +190,8 @@ textbook_companion.browse_student:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_browse_student'
   requirements:
     _permission: 'access content'
+  options:
+    no_cache: TRUE
 textbook_companion.completed_books:
   path: /textbook-companion/completed-books
   defaults:
@@ -173,6 +199,8 @@ textbook_companion.completed_books:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_completed_books'
   requirements:
     _permission: 'textbook companion  download code'
+  options:
+    no_cache: TRUE
 textbook_companion.run_form:
   path: /textbook-companion/textbook-run/{book_pref_id?}
   defaults:
@@ -185,9 +213,10 @@ textbook_companion.download_example_file:
   defaults:
     _title: 'Code Download'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_example_file'
-    example_file_id: NULL
   requirements:
     _permission: 'download code'
+  options:
+    no_cache: TRUE
 textbook_companion.download_sample_code:
   path: /textbook-companion/download/samplecode
   defaults:
@@ -195,30 +224,35 @@ textbook_companion.download_sample_code:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_sample_code'
   requirements:
     _permission: 'download code'
+  options:
+    no_cache: TRUE
 textbook_companion.download_example:
   path: /textbook-companion/download/example/{example_id}
   defaults:
     _title: 'Code Download'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_example'
-    example_id: NULL
   requirements:
     _permission: 'download code'
+  options:
+    no_cache: TRUE
 textbook_companion.download_chapter:
   path: /textbook-companion/download/chapter/{chapter_id}
   defaults:
-    chapter_id: NULL
     _title: 'Code Download'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_chapter'
   requirements:
     _permission: 'download code'
+  options:
+    no_cache: TRUE
 textbook_companion.download_book:
   path: /textbook-companion/download/book/{book_id}
   defaults:
     _title: 'Download Book'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_book'
-    book_id: NULL
   requirements:
     _permission: 'Download book'
+  options:
+    no_cache: TRUE
 textbook_companion.download_full_chapter:
   path: /textbook-companion/full-download-external/chapter
   defaults:
@@ -226,6 +260,8 @@ textbook_companion.download_full_chapter:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_full_chapter'
   requirements:
     _permission: 'download books to review'
+  options:
+    no_cache: TRUE
 textbook_companion.download_full_book:
   path: /textbook-companion/full-download-external/book
   defaults:
@@ -233,6 +269,8 @@ textbook_companion.download_full_book:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_full_book'
   requirements:
     _permission: 'download books to review'
+  options:
+    no_cache: TRUE
 textbook_companion.delete_book:
   path: /textbook-companion/delete-book
   defaults:
@@ -240,6 +278,8 @@ textbook_companion.delete_book:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_delete_book'
   requirements:
     _permission: 'approve code'
+  options:
+    no_cache: TRUE
 textbook_companion.ajax:
   path: /textbook-companion/ajax
   defaults:
@@ -247,6 +287,8 @@ textbook_companion.ajax:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_ajax'
   requirements:
     _permission: 'access content'
+  options:
+    no_cache: TRUE
 textbook_companion.settings_form:
   path: /admin/settings/book_companion
   defaults:
@@ -261,6 +303,8 @@ textbook_companion._data_entry_proposal_all:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::_data_entry_proposal_all'
   requirements:
     _permission: 'dataentry book proposal'
+  options:
+    no_cache: TRUE
 textbook_companion.dataentry_edit:
   path: /textbook-companion/dataentry-edit
   defaults:
@@ -268,6 +312,8 @@ textbook_companion.dataentry_edit:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::dataentry_edit'
   requirements:
     _permission: 'dataentry book proposal'
+  options:
+    no_cache: TRUE
 textbook_companion.cheque_proposal_all:
   path: /textbook-companion/cheque-manage/all
   defaults:
@@ -275,6 +321,8 @@ textbook_companion.cheque_proposal_all:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::cheque_proposal_all'
   requirements:
     _permission: 'cheque proposal'
+  options:
+    no_cache: TRUE
 textbook_companion.contact_details:
   path: /textbook-companion/mycontact
   defaults:
@@ -310,6 +358,8 @@ textbook_companion._list_all_certificates:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::_list_all_certificates'
   requirements:
     _permission: 'list all certificates'
+  options:
+    no_cache: TRUE
 textbook_companion.generate_pdf:
   path: /textbook-companion/certificates/generate_pdf
   defaults:
@@ -324,6 +374,8 @@ textbook_companion.verify_certificates:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::verify_certificates'
   requirements:
     _permission: 'verify certificates'
+  options:
+    no_cache: TRUE
 textbook_companion.paper_submission_form:
   path: /textbook-companion/manage-proposal/paper-submission
   defaults:
@@ -338,3 +390,5 @@ textbook_companion.nonaicte_proposal_all:
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_nonaicte_proposal_all'
   requirements:
     _permission: 'create book proposal'
+  options:
+    no_cache: TRUE

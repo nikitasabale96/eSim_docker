@@ -375,10 +375,10 @@ https://eSim.fossee.in/lab-migration/lab-migration-guidelines
 
 Best Wishes,
 
-@site_name Team
+@site Team
 FOSSEE, IIT Bombay', [
-    '@site_name' => $site_name,
-    '!user_name' => $user_data->getDisplayName(),
+    '@site' => $site_name,
+    '@user_name' => $user_data->getDisplayName(),
   ]);
 
   break;
@@ -389,16 +389,16 @@ case 'solution_disapproved':
   /* Load proposal */
   $proposal_data = \Drupal::database()->select('lab_migration_proposal', 'p')
     ->fields('p')
-    ->condition('id', $params['solution_disapproved']['solution_id'])
+    ->condition('id', $params['solution_id'])
     ->range(0, 1)
     ->execute()
     ->fetchObject();
 
   /* Load user */
-  $user_data = User::load($params['solution_disapproved']['user_id']);
+  $user_data = \Drupal\user\Entity\User::load($params['user_id']);
 
   /* Headers */
-  $message['headers'] = $params['solution_disapproved']['headers'];
+  $message['headers'] = $params['headers'];
 
   /* Subject */
   $site_name = \Drupal::config('system.site')->get('name');
@@ -407,28 +407,18 @@ case 'solution_disapproved':
   ]);
 
   /* Body */
-  $message['body'][] = t('
-Dear ' . $proposal_data->solution_provider_name . ',
-
-Your following solution has been disapproved:
-
-Solution number: ' . $params['solution_disapproved']['solution_number'] . '
-Caption: ' . $params['solution_disapproved']['solution_caption'] . '
-
-Reason for dis-approval:
-' . $params['solution_disapproved']['message'] . '
-
-Best Wishes,
-
-@site_name Team
-FOSSEE, IIT Bombay', [
-    '@site_name' => $site_name,
-    '!user_name' => $user_data->getDisplayName(),
-  ]);
+  $message['body'][] = t(
+    "Dear @name,\n\nYour following solution has been disapproved:\n\nSolution number: @solution_number\nCaption: @solution_caption\n\nReason for dis-approval:\n@reason\n\nBest Wishes,\n\n@site Team\nFOSSEE, IIT Bombay",
+    [
+      '@name' => $proposal_data->solution_provider_name ?? $user_data->getDisplayName(),
+      '@solution_number' => $params['solution_number'],
+      '@solution_caption' => $params['solution_caption'],
+      '@reason' => $params['message'],
+      '@site' => $site_name,
+    ]
+  );
 
   break;
-
-
 
 case 'solution_deleted_user':
 
@@ -466,10 +456,10 @@ Caption: ' . $params['solution_deleted_user']['solution_caption'] . '
 
 Best Wishes,
 
-@site_name Team
+@site Team
 FOSSEE, IIT Bombay', [
-    '@site_name' => $site_name,
-    '!user_name' => $user_data->getDisplayName(),
+    '@site' => $site_name,
+    '@user_name' => $user_data->getDisplayName(),
   ]);
 
   break;
@@ -495,7 +485,7 @@ case 'dependency_uploaded':
 
   /* Body */
   $message['body'][] = t('
-Dear !user_name,
+Dear @user_name,
 
 You have uploaded following dependency files:
 ' . $dependency_files . '
@@ -505,10 +495,10 @@ https://eSim.fossee.in/lab-migration/lab-migration-guidelines
 
 Best Wishes,
 
-@site_name Team,
+@site Team,
 FOSSEE, IIT Bombay', [
-    '@site_name' => $site_name,
-    '!user_name' => $user_data->getDisplayName(),
+    '@site' => $site_name,
+    '@user_name' => $user_data->getDisplayName(),
   ]);
 
   break;
@@ -623,10 +613,10 @@ The solution is under review. You will be notified of the decision.
 
 Best Wishes,
 
-@site_name Team
+@site Team
 FOSSEE, IIT Bombay",
 [
-  '@site_name'   => $site_name,
+  '@site'   => $site_name,
   '@name'        => $proposal_data->solution_provider_name,
   '@experiment' => $experiment_data->title,
   '@solution_no'=> $solution_data->code_number,
@@ -687,18 +677,18 @@ case 'solution_proposal_received':
 
   /* Body */
   $message['body'][] = t('
-Dear !provider,
+Dear @provider,
 
 We have received your proposal for providing solution for lab migration with the following details:
 
 List of experiments:
 !experiments
 
-Full Name: !fullname
-Email: !email
-Contact No.: !phone
-Department/Branch: !department
-University/Institute: !university
+Full Name: @fullname
+Email: @email
+Contact No.: @phone
+Department/Branch: @department
+University/Institute: @university
 
 Your proposal is under review. You will soon receive an email when the same has been approved / disapproved.
 
@@ -707,16 +697,16 @@ https://eSim.fossee.in/lab-migration/lab-migration-guidelines
 
 Best Wishes,
 
-@site_name Team
+@site Team
 FOSSEE, IIT Bombay', [
-    '@site_name'  => $site_name,
-    '!provider'  => $proposal_data->solution_provider_name,
-    '!experiments' => $experiment_list,
-    '!fullname'  => $proposal_data->solution_provider_name_title . ' ' . $proposal_data->solution_provider_name,
-    '!email'     => $user_data?->getEmail() ?? '',
-    '!phone'     => $proposal_data->solution_provider_contact_ph,
-    '!department'=> $proposal_data->department,
-    '!university'=> $proposal_data->solution_provider_university,
+    '@site'  => $site_name,
+    '@provider'  => $proposal_data->solution_provider_name,
+    '@experiments' => $experiment_list,
+    '@fullname'  => $proposal_data->solution_provider_name_title . ' ' . $proposal_data->solution_provider_name,
+    '@email'     => $user_data?->getEmail() ?? '',
+    '@phone'     => $proposal_data->solution_provider_contact_ph,
+    '@department'=> $proposal_data->department,
+    '@university'=> $proposal_data->solution_provider_university,
   ]);
 
   break;
@@ -775,50 +765,51 @@ case 'solution_proposal_approved':
 
   /* Body */
   $message['body'][] = t('
-Dear !name,
+Dear @name,
 
 Congratulations! Your proposal for lab migration with the following details has been approved:
 
-Full Name: !fullname
-Email: !email
-Contact No.: !phone
-Department/Branch: !department
-University/Institute: !university
-City: !city
-State: !state
+Full Name: @fullname
+Email: @email
+Contact No.: @phone
+Department/Branch: @department
+University/Institute: @university
+City: @city
+State: @state
 
 List of experiments:
-!experiments
+@experiments
 
 Please ensure that ALL the codes follow guidelines at:
 https://eSim.fossee.in/lab-migration/lab-migration-guidelines
 
 Best Wishes,
 
-@site_name Team
+@site Team
 FOSSEE, IIT Bombay', [
-    '@site_name'   => $site_name,
-    '!name'        => $proposal_data->solution_provider_name,
-    '!fullname'    => $proposal_data->solution_provider_name_title . ' ' . $proposal_data->solution_provider_name,
-    '!email'       => $user_data?->getEmail() ?? '',
-    '!phone'       => $proposal_data->solution_provider_contact_ph,
-    '!department'  => $proposal_data->solution_provider_department,
-    '!university'  => $proposal_data->solution_provider_university,
-    '!city'        => $proposal_data->solution_provider_city,
-    '!state'       => $proposal_data->solution_provider_state,
-    '!experiments' => $experiment_list,
+    '@site'   => $site_name,
+    '@name'        => $proposal_data->solution_provider_name,
+    '@fullname'    => $proposal_data->solution_provider_name_title . ' ' . $proposal_data->solution_provider_name,
+    '@email'       => $user_data?->getEmail() ?? '',
+    '@phone'       => $proposal_data->solution_provider_contact_ph,
+    '@department'  => $proposal_data->solution_provider_department,
+    '@university'  => $proposal_data->solution_provider_university,
+    '@city'        => $proposal_data->solution_provider_city,
+    '@state'       => $proposal_data->solution_provider_state,
+    '@experiments' => $experiment_list,
   ]);
 
   break;
 
 
 
+
 case 'solution_proposal_disapproved':
 
   /* Load user */
-  $user_data = User::load($params['solution_proposal_disapproved']['user_id']);
+  $user_data = User::load($params['user_id']);
 
-  $proposal_id = $params['solution_proposal_disapproved']['proposal_id'];
+  $proposal_id = $params['proposal_id'];
 
   /* Load proposal */
   $proposal_data = \Drupal::database()
@@ -838,7 +829,7 @@ case 'solution_proposal_disapproved':
     ->execute();
 
   $experiment_list = '';
-  while ($experiment_data = $experiment_q->fetchObject()) {
+  foreach ($experiment_q as $experiment_data) {
     $experiment_list .= $experiment_data->number . ') ' .
       $experiment_data->title .
       ' — ' . $experiment_data->description . "\n";
@@ -848,9 +839,8 @@ case 'solution_proposal_disapproved':
   $site_name = \Drupal::config('system.site')->get('name');
 
   /* Headers */
-  $headers = $params['solution_proposal_disapproved']['headers'] ?? [];
+  $headers = $params['headers'] ?? [];
 
-  // Prevent PhpMail fatal error
   if (isset($headers['Cc']) && is_array($headers['Cc'])) {
     $headers['Cc'] = implode(',', $headers['Cc']);
   }
@@ -858,7 +848,7 @@ case 'solution_proposal_disapproved':
     $headers['Bcc'] = implode(',', $headers['Bcc']);
   }
 
-  $message['headers'] = $headers;
+  $message['headers'] += $headers;
 
   /* Subject */
   $message['subject'] = t('[@site] Lab Migration Solution Disapproval', [
@@ -866,35 +856,18 @@ case 'solution_proposal_disapproved':
   ]);
 
   /* Body */
-  $message['body'][] = t('
-Dear !name,
-
-We regret to inform you that your Lab migration solution proposal has been disapproved.
-
-Title of Lab: !lab
-
-List of experiments:
-!experiments
-
-Reason:
-!reason
-
-You are welcome to submit a new proposal.
-
-Best Wishes,
-
-@site_name Team
-FOSSEE, IIT Bombay', [
-    '@site_name'   => $site_name,
-    '!name'        => $proposal_data->name,
-    '!lab'         => $proposal_data->lab_title,
-    '!experiments' => $experiment_list,
-    '!reason'      => $params['solution_proposal_disapproved']['message'],
-  ]);
+  $message['body'][] = t(
+    "Dear @name,\n\nWe regret to inform you that your Lab migration solution proposal has been disapproved.\n\nTitle of Lab: @lab\n\nList of experiments:\n@experiments\n\nReason:\n@reason\n\nYou are welcome to submit a new proposal.\n\nBest Wishes,\n\n@site Team\nFOSSEE, IIT Bombay",
+    [
+      '@name'        => $proposal_data->name ?? $user_data->getDisplayName(),
+      '@lab'         => $proposal_data->lab_title ?? '',
+      '@experiments' => $experiment_list,
+      '@reason'      => $params['message'],
+      '@site'        => $site_name,
+    ]
+  );
 
   break;
-
-
 
 
     case 'proposal_completed':
@@ -987,9 +960,9 @@ https://eSim.fossee.in/lab-migration/lab-migration-run/' . $proposal_data->id . 
 
 Best Wishes,
 
-!site_name Team
+@site Team
 FOSSEE, IIT Bombay', [
-        '!site_name' => $site_name,
+        '@site' => $site_name,
       ]);
 
       break;
@@ -1052,10 +1025,10 @@ https://eSim.fossee.in/lab-migration/lab-migration-guidelines
 
 Best Wishes,
 
-@site_name Team
+@site Team
 FOSSEE, IIT Bombay', [
-    '@site_name' => $site_name,
-    '!user_name' => $user_data->getDisplayName(),
+    '@site' => $site_name,
+    '@user_name' => $user_data->getDisplayName(),
   ]);
 
   break;
