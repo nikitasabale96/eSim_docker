@@ -52,7 +52,9 @@
         "drupal/syslog_report": "^3.0",
         "drupal/views_migration": "^1.2",
         "drupal/webform": "^6.2",
-        "drupal/xmlsitemap": "^2.0"
+        "drupal/xmlsitemap": "^2.0",
+        "drupal/ckeditor_accordion": "^2.3"
+
     },
     "conflict": {
         "drupal/drupal": "*"
