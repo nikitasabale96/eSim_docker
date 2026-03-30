@@ -178,7 +178,7 @@ class DefaultController extends ControllerBase {
     ];
   }
 
-public function esim_research_migration_proposal_edit_file_all() {
+public function esim_research_migration_proposal_edit_file_all($proposal_id) {
   $proposal_rows = [];
   $query = \Drupal::database()->select('research_migration_proposal', 'r');
   $query->fields('r');
@@ -633,6 +633,7 @@ public function esim_research_migration_proposal_edit_file_all() {
 
   public function esim_research_migration_project_files() {
     $proposal_id = $this->resolveIdentifier();
+    //var_dump($proposal_id);die;
     if (!$proposal_id) {
       $this->messenger()->addError($this->t('Missing proposal identifier.'));
       return $this->redirect('esim_research_migration.proposal_all');
@@ -644,19 +645,19 @@ public function esim_research_migration_proposal_edit_file_all() {
       ->execute()
       ->fetchObject();
 
-    if (!$proposal || empty($proposal->samplefilepath)) {
-      $this->messenger()->addError($this->t('No synopsis file available for this proposal.'));
-      return $this->redirect('esim_research_migration.proposal_all');
-    }
+    // if (!$proposal || empty($proposal->samplefilepath)) {
+    //   $this->messenger()->addError($this->t('No synopsis file available for this proposal.'));
+    //   return $this->redirect('esim_research_migration.proposal_all');
+    // }
 
     $root_path = rtrim(esim_research_migration_path(), '/') . '/';
     $file_path = $root_path . ltrim($proposal->samplefilepath, '/');
 
-    if (!is_file($file_path)) {
-      $this->messenger()->addError($this->t('The requested file is not available.'));
-      return $this->redirect('esim_research_migration.proposal_all');
-    }
-
+    // if (!is_file($file_path)) {
+    //   $this->messenger()->addError($this->t('The requested file is not available.'));
+    //   return $this->redirect('esim_research_migration.proposal_all');
+    // }
+//var_dump($file_path);die;
     $response = new BinaryFileResponse($file_path);
     $response->setContentDisposition('attachment', basename($file_path));
     $response->setPrivate();

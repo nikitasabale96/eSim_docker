@@ -35,15 +35,17 @@ class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
       } //$proposal_data = $proposal_q->fetchObject()
       else {
         \Drupal::messenger()->addError(t('Invalid proposal selected. Please try again.'));
-        $form_state->setRedirect('esim_research_migration.proposal_edit_file_all');
-        return [];
-      }
+$form_state->setRedirect(
+  'esim_research_migration.proposal_edit_file_all',
+  ['proposal_id' => $proposal_id]
+);      }
     } //$proposal_q
     else {
       \Drupal::messenger()->addError(t('Invalid proposal selected. Please try again.'));
-      $form_state->setRedirect('esim_research_migration.proposal_edit_file_all');
-      return [];
-    }
+$form_state->setRedirect(
+  'esim_research_migration.proposal_edit_file_all',
+  ['proposal_id' => $proposal_id]
+);    }
     $query = \Drupal::database()->select('research_migration_submitted_abstracts');
     $query->fields('research_migration_submitted_abstracts');
     $query->condition('proposal_id', $proposal_data->id);
@@ -198,8 +200,10 @@ class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
     $proposal_data = $proposal_q->fetchObject();
     $proposal_id = $proposal_data->id;
     if (!$proposal_data) {
-      $form_state->setRedirect('esim_research_migration.proposal_edit_file_all');
-      return;
+$form_state->setRedirect(
+  'esim_research_migration.proposal_edit_file_all',
+  ['proposal_id' => $proposal_id]
+);      return;
     } //!$proposal_data
     $proposal_id = $proposal_data->id;
     $proposal_directory = $proposal_data->directory_name;

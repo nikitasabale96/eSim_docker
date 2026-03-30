@@ -17,7 +17,7 @@ hackathon_submission.completed_circuits:
   options:
     no_cache: TRUE
 hackathon_submission.download_hackathon_final_submission_form:
-  path: /hackathon/download/completed-circuits/{submission_id?}
+  path: /hackathon/download/completed-circuits/{submission_id}
   defaults:
     _title: 'Download Circuit Design and Simulation Marathon using eSim Completed Circuit'
     _form: \Drupal\hackathon_submission\Form\DownloadHackathonFinalSubmissionForm

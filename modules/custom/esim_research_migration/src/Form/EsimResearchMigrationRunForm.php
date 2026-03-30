@@ -48,12 +48,16 @@ public function buildForm(array $form, FormStateInterface $form_state) {
   $form['research_migration'] = [
     '#type' => 'select',
     '#title' => $this->t('Title of the research migration'),
+    '#title_display' => 'before',
     '#options' => $options_first,
     '#default_value' => $selected,
     '#ajax' => [
       'callback' => '::researchMigrationProjectDetailsCallback',
       'wrapper' => 'ajax_research_migration_details',
     ],
+   '#attributes' => [
+    'style' => 'width: 100%;', // Set the width to 200px
+  ],
   ];
 
   if (!$url_research_migration_id) {

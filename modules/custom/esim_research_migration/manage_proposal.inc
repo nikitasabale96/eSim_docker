@@ -905,7 +905,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
     $form['contributor_name'] = array(
         '#type' => 'textfield',
         '#title' => t('Name of the Proposer'),
-        '#size' => 30,
+        '// #size' => 30,
         '#maxlength' => 50,
         '#required' => true,
         '#default_value' => $proposal_data->contributor_name,
@@ -918,7 +918,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
     $form['university'] = array(
         '#type' => 'textfield',
         '#title' => t('University'),
-        '#size' => 200,
+        '// #size' => 200,
         '#maxlength' => 200,
         '#required' => true,
         '#default_value' => $proposal_data->university,
@@ -926,7 +926,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
     $form['institute'] = array(
         '#type' => 'textfield',
         '#title' => t('Institute'),
-        '#size' => 80,
+        '// #size' => 80,
         '#maxlength' => 200,
         '#required' => true,
         '#default_value' => $proposal_data->institute,
@@ -940,7 +940,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
     $form['faculty_name'] = array(
         '#type' => 'textfield',
         '#title' => t('Name of the Faculty'),
-        '#size' => 50,
+        '// #size' => 50,
         '#maxlength' => 50,
         '#validated' => true,
         '#default_value' => $proposal_data->faculty_name,
@@ -948,7 +948,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
     $form['faculty_department'] = array(
         '#type' => 'textfield',
         '#title' => t('Department of the Faculty'),
-        '#size' => 50,
+        '// #size' => 50,
         '#maxlength' => 50,
         '#validated' => true,
         '#default_value' => $proposal_data->faculty_department,
@@ -956,7 +956,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
     $form['faculty_email'] = array(
         '#type' => 'textfield',
         '#title' => t('Email id of the Faculty'),
-        '#size' => 255,
+        '// #size' => 255,
         '#maxlength' => 255,
         '#validated' => true,
         '#default_value' => $proposal_data->faculty_email,
@@ -964,7 +964,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
     $form['project_title'] = array(
         '#type' => 'textfield',
         '#title' => t('Title of the Research Migration Project'),
-        '#size' => 300,
+        '// #size' => 300,
         '#maxlength' => 350,
         '#required' => true,
         '#default_value' => $proposal_data->project_title,
@@ -979,7 +979,7 @@ function esim_research_migration_proposal_edit_form($form, &$form_state)
    /* $form['solver_used'] = array(
         '#type' => 'textfield',
         '#title' => t('Solver to be used'),
-        '#size' => 50,
+        '// #size' => 50,
         '#maxlength' => 50,
         '#required' => true,
         '#default_value' => $proposal_data->solver_used,

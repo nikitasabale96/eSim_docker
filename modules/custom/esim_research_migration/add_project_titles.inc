@@ -15,7 +15,7 @@ function add_project_title_form($form, &$form_state)
 	$form['new_project_title_name'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Enter the name of the project title'),
-		'#size' => 250,
+	// 	'// #size' => 250,
 		'#attributes' => array(
 			'placeholder' => t('Enter the name of the project title displayed to the contributor')
 		),
@@ -25,7 +25,7 @@ function add_project_title_form($form, &$form_state)
 	$form['project_link'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Enter the Link of the project'),
-		'#size' => 250,
+	// 	'// #size' => 250,
 		'#attributes' => array(
 			'placeholder' => t('Enter the Link of the project displayed to the contributor')
 		),
@@ -40,7 +40,7 @@ function add_project_title_form($form, &$form_state)
 	);
 	$form['upload_project_title_resource_file']['project_title_resource_file_path'] = array(
 		'#type' => 'file',
-		'#size' => 48,
+	// 	'// #size' => 48,
 		'#description' => t('<span style="color:red;">Upload filenames with allowed extensions only. No spaces or any special characters allowed in filename.</span>') . '<br />' . t('<span style="color:red;">Allowed file extensions: ') . variable_get('list_of_available_projects_file', '') . '</span>'
 	);*/
 	$form['submit'] = array(

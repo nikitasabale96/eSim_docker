@@ -65,7 +65,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['contributor_name'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Name of the contributor'),
-		'#size' => 250,
+	// 	'// #size' => 250,
 		'#attributes' => array(
 			'placeholder' => t('Enter your full name.....')
 		),
@@ -75,14 +75,14 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['contributor_email_id'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Email'),
-		'#size' => 30,
+	// 	'// #size' => 30,
 		'#value' => $user->mail,
 		'#disabled' => TRUE
 	);
 	$form['contributor_contact_no'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Contact No.'),
-		'#size' => 10,
+	// 	'// #size' => 10,
 		'#attributes' => array(
 			'placeholder' => t('Enter your contact number')
 		),
@@ -91,7 +91,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['university'] = array(
 		'#type' => 'textfield',
 		'#title' => t('University'),
-		'#size' => 80,
+	// 	'// #size' => 80,
 		'#maxlength' => 200,
 		'#required' => TRUE,
 		'#attributes' => array(
@@ -101,7 +101,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['institute'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Institute'),
-		'#size' => 80,
+	// 	'// #size' => 80,
 		'#maxlength' => 200,
 		'#required' => TRUE,
 		'#attributes' => array(
@@ -135,7 +135,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['faculty_name'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Name of the Faculty Member of your Institution, if any, who helped you with this Research Migration Project'),
-		'#size' => 50,
+	// 	'// #size' => 50,
 		'#maxlength' => 50,
 		'#validated' => TRUE,
 		'#description' => t('<span style="color:red">Maximum character limit is 50</span>')
@@ -143,7 +143,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['faculty_department'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Department of the Faculty Member of your Institution, if any, who helped you with this Research Migration Project'),
-		'#size' => 50,
+	// 	'// #size' => 50,
 		'#maxlength' => 50,
 		'#validated' => TRUE,
 		'#description' => t('<span style="color:red">Maximum character limit is 50</span>')
@@ -151,7 +151,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['faculty_email'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Email id of the Faculty Member of your Institution, if any, who helped you with this Research Migration Project'),
-		'#size' => 255,
+	// 	'// #size' => 255,
 		'#maxlength' => 255,
 		'#validated' => TRUE,
 		'#description' => t('<span style="color:red">Maximum character limit is 255</span>')
@@ -170,7 +170,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['other_country'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Other than India'),
-		'#size' => 100,
+	// 	'// #size' => 100,
 		'#attributes' => array(
 			'placeholder' => t('Enter your country name')
 		),
@@ -185,7 +185,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['other_state'] = array(
 		'#type' => 'textfield',
 		'#title' => t('State other than India'),
-		'#size' => 100,
+	// 	'// #size' => 100,
 		'#attributes' => array(
 			'placeholder' => t('Enter your state/region name')
 		),
@@ -200,7 +200,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['other_city'] = array(
 		'#type' => 'textfield',
 		'#title' => t('City other than India'),
-		'#size' => 100,
+	// 	'// #size' => 100,
 		'#attributes' => array(
 			'placeholder' => t('Enter your city name')
 		),
@@ -240,7 +240,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['pincode'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Pincode'),
-		'#size' => 6
+	// 	'// #size' => 6
 	);
 	/***************************************************************************/
 	$form['hr'] = array(
@@ -250,7 +250,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 		$form['project_title'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Title of the Research Migration Project'),
-		'#size' => 80,		
+	// 	'// #size' => 80,		
 		'#maxlength' => 250,
 		'#description' => t('Maximum character limit is 250'),
 		'#required' => TRUE,
@@ -260,7 +260,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 	$form['source_of_the_project'] = array(
 		'#type' => 'textarea',
 		'#title' => t('Source of the Project'),
-		// '#size' => 80,
+		// '// #size' => 80,
 		// '#maxlength' => 200,
 		'#required' => TRUE,
 		'#attributes' => array(
@@ -281,7 +281,7 @@ function esim_research_migration_proposal_form($form, &$form_state, $no_js_use =
 // // to ensure that it uses the correct configuration object.
 // $form['samplefile']['samplefile_path'] = array(
 // 		'#type' => 'file',
-// 		'#size' => 48,
+// 	// 	'// #size' => 48,
 // 		'#description' => t('<span style="color:red;">Upload filenames with allowed extensions only. No spaces or any special characters allowed in filename.</span>') . '<br />' . t('<span style="color:red;">Allowed file extensions : ') . variable_get('resource_upload_extensions', '') . '</span>'
 // 	);
 

@@ -109,11 +109,11 @@ function _list_of_chapters($preference_id = 0) {
 
 public function textbook_companion_path()
 {
-    return $_SERVER['DOCUMENT_ROOT'] . base_path() . 'eSim_uploads/tbc_uploads/';
+    return $_SERVER['DOCUMENT_ROOT'] . base_path() . 'esim_uploads/tbc_uploads/';
 }
 public function textbook_companion_samplecode_path()
 {
-    return $_SERVER['DOCUMENT_ROOT'] . base_path() . 'eSim_uploads/tbc_sample_code/';
+    return $_SERVER['DOCUMENT_ROOT'] . base_path() . 'esim_uploads/tbc_sample_code/';
 }
 
 }

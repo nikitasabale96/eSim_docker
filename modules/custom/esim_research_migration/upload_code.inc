@@ -424,19 +424,19 @@ function esim_research_migration_upload_abstract_code_form_submit($form, &$form_
 // // @FIXME
 // // This looks like another module's variable. You'll need to rewrite this call
 // // to ensure that it uses the correct configuration object.
-// $from = variable_get('research_migration_from_email', '');
+$from = variable_get('research_migration_from_email', '');
 
     // @FIXME
 // // @FIXME
 // // This looks like another module's variable. You'll need to rewrite this call
 // // to ensure that it uses the correct configuration object.
-// $bcc = variable_get('research_migration_emails', '');
+$bcc = variable_get('research_migration_emails', '');
 
     // @FIXME
 // // @FIXME
 // // This looks like another module's variable. You'll need to rewrite this call
 // // to ensure that it uses the correct configuration object.
-// $cc = variable_get('research_migration_cc_emails', '');
+$cc = variable_get('research_migration_cc_emails', '');
 
     $params['abstract_uploaded']['proposal_id'] = $proposal_id;
     $params['abstract_uploaded']['submitted_abstract_id'] = $submitted_abstract_id;

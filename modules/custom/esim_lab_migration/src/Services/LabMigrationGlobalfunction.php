@@ -231,7 +231,7 @@ public function lm_ucname($string)
   }
   public function lab_migration_path()
   {
-    return $_SERVER['DOCUMENT_ROOT'] . base_path() . 'eSim_uploads/lab_migration_uploads/';
+    return $_SERVER['DOCUMENT_ROOT'] . base_path() . 'esim_uploads/lab_migration_uploads/';
     // var/www/html/ESIM-Drupal10-LM/esim_uploads/lab_migration_uploads
 
   }
