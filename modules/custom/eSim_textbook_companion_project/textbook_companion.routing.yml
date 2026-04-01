@@ -198,7 +198,7 @@ textbook_companion.completed_books:
     _title: 'Completed Books'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_completed_books'
   requirements:
-    _permission: 'textbook companion  download code'
+    _permission: 'download code'
   options:
     no_cache: TRUE
 textbook_companion.run_form:
@@ -250,7 +250,7 @@ textbook_companion.download_book:
     _title: 'Download Book'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_book'
   requirements:
-    _permission: 'Download book'
+    _permission: 'download code'
   options:
     no_cache: TRUE
 textbook_companion.download_full_chapter:
@@ -259,7 +259,7 @@ textbook_companion.download_full_chapter:
     _title: 'Code Download'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_full_chapter'
   requirements:
-    _permission: 'download books to review'
+    _permission: 'download code'
   options:
     no_cache: TRUE
 textbook_companion.download_full_book:
@@ -268,7 +268,7 @@ textbook_companion.download_full_book:
     _title: 'Code Download'
     _controller: '\Drupal\textbook_companion\Controller\DefaultController::textbook_companion_download_full_book'
   requirements:
-    _permission: 'download books to review'
+    _permission: 'download code'
   options:
     no_cache: TRUE
 textbook_companion.delete_book:

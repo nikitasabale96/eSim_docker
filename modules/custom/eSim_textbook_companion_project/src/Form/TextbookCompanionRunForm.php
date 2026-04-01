@@ -67,16 +67,18 @@ class TextbookCompanionRunForm extends FormBase {
       ];
 
       // Download Book link
-      $form['book_wrapper']['download_book'] = [
-        '#type' => 'markup',
-        '#markup' => Link::fromTextAndUrl(
-          $this->t('Download Book'),
-       Url::fromRoute('textbook_companion.download_book', ['book_id' => $selected_book]))->toString()
-             .' ' .  $this->t('(Download the eSim codes for all the solved examples from the Chapter)'),
-
-      ];
-       
-      // Download the eSim codes for all the solved examples
+if (!empty($selected_book)) {
+  $form['book_wrapper']['download_book'] = [
+    '#type' => 'markup',
+    '#markup' => Link::fromTextAndUrl(
+      $this->t('Download Book'),
+      Url::fromRoute('textbook_companion.download_book', [
+        'book_id' => $selected_book
+      ])
+    )->toString()
+    . ' ' . $this->t('(Download the eSim codes for all the solved examples from the Chapter)'),
+  ];
+}      // Download the eSim codes for all the solved examples
 $selected_chapter = (int) $form_state->getValue('chapter');
 
       // Chapter select

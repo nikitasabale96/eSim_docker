@@ -233,7 +233,7 @@ function hackathon_submission_completed_circuits() {
       // $url = Url::fromUri('internal:/hackathon/download/completed-circuits/' . $completed->literature_survey_id);
       $url = Url::fromRoute(
   'hackathon_submission.download_hackathon_final_submission_form',
-  ['submission_id' => $completed->literature_survey_id]
+  ['submission_id' => $completed->id]
 );
       $link = Link::fromTextAndUrl($row->circuit_name, $url)->toString();
 

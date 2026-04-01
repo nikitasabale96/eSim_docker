@@ -116,7 +116,7 @@ class AddProjectTitleForm extends FormBase {
       ":rm_project_title_name" => $v['new_project_title_name'],
       ":rm_project_link" => $v['project_link'],
     ];
-    $result1 = \Drupal::database()->query($result, $args, $result);
+    $result1 = \Drupal::database()->query($result, $args);
     $dest_path = esim_research_migration_project_titles_resource_file_path();
     //var_dump($dest_path);die;
     if (!isset($_FILES['files']['name']) || !is_array($_FILES['files']['name'])) {
