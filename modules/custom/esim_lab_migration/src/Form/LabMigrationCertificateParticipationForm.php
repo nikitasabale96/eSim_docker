@@ -10,6 +10,8 @@ namespace Drupal\lab_migration\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
 
 class LabMigrationCertificateParticipationForm extends FormBase {
 
@@ -78,27 +80,32 @@ class LabMigrationCertificateParticipationForm extends FormBase {
     return $form;
   }
 
-  public function submitForm(array &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-    $user = \Drupal::currentUser();
-    $v = $form_state->getValues();
-    $result = "INSERT INTO {lab_migration_certificate} 
-    (uid, name_title, name, email_id, institute_name, institute_address, lab_name, department, proposal_id,creation_date) VALUES
-    (:uid, :name_title, :name, :email_id, :institute_name, :institute_address, :lab_name, :department, :proposal_id,:creation_date)";
-    $args = [
-      ":uid" => $user->uid,
-      ":name_title" => trim($v['name_title']),
-      ":name" => trim($v['name']),
-      ":email_id" => trim($v['email_id']),
-      ":institute_name" => trim($v['institute_name']),
-      ":institute_address" => trim($v['institute_address']),
-      ":lab_name" => trim($v['lab_name']),
-      ":department" => trim($v['department']),
-      ":proposal_id" => $v['proposal_id'],
-      ":creation_date" => time(),
-    ];
-    $proposal_id = \Drupal::database()->query($result, $args);
-    drupal_goto('lab_migration/certificate');
-  }
 
+public function submitForm(array &$form, FormStateInterface $form_state) {
+
+  $user = \Drupal::currentUser();
+  $values = $form_state->getValues();
+
+  // ✅ Insert using Drupal 10 DB API
+  \Drupal::database()->insert('lab_migration_certificate')
+    ->fields([
+      'uid' => $user->id(), // ✅ FIXED
+      'name_title' => trim($values['name_title']),
+      'name' => trim($values['name']),
+      'email_id' => trim($values['email_id']),
+      'institute_name' => trim($values['institute_name']),
+      'institute_address' => trim($values['institute_address']),
+      'lab_name' => trim($values['lab_name']),
+      'department' => trim($values['department']),
+      'proposal_id' => (int) $values['proposal_id'], // ✅ ensure integer
+      'creation_date' => time(),
+    ])
+    ->execute();
+
+  // ✅ Redirect (Drupal 10 way)
+  $form_state->setRedirectUrl(
+    Url::fromUri('internal:/lab-migration/certificate')
+  );
+}
 }
 ?>

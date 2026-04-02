@@ -77,6 +77,7 @@ class DefaultController extends ControllerBase {
       '#attributes' => ['class' => ['research-migration-pending-table']],
       '#empty' => $this->t('There are no pending proposals.'),
       '#cache' => [
+        'max-age' => 0,
         'tags' => ['research_migration_proposal_list'],
         'contexts' => ['user.permissions'],
       ],
@@ -172,13 +173,14 @@ class DefaultController extends ControllerBase {
       '#attributes' => ['class' => ['proposal-table']],
       '#empty' => $this->t('No proposals found.'),
       '#cache' => [
+        'max-age' => 0,
         'tags' => ['research_migration_proposal_list'],
         'contexts' => ['user.permissions'],
       ],
     ];
   }
 
-public function esim_research_migration_proposal_edit_file_all($proposal_id) {
+public function esim_research_migration_proposal_edit_file_all() {
   $proposal_rows = [];
   $query = \Drupal::database()->select('research_migration_proposal', 'r');
   $query->fields('r');
@@ -269,6 +271,7 @@ public function esim_research_migration_proposal_edit_file_all($proposal_id) {
     '#rows' => $proposal_rows,
     '#empty' => t('No proposals found.'),
     '#cache' => [
+      'max-age' => 0,
       'tags' => ['research_migration_proposal_list'],
       'contexts' => ['user.permissions'],
     ],
@@ -494,6 +497,7 @@ public function esim_research_migration_proposal_edit_file_all($proposal_id) {
       ],
       '#attributes' => ['class' => ['research-migration-completed-table']],
       '#cache' => [
+        'max-age' => 0,
         'tags' => ['research_migration_proposal_list'],
         'contexts' => ['user.permissions'],
       ],
@@ -542,6 +546,7 @@ public function esim_research_migration_proposal_edit_file_all($proposal_id) {
       // ])),
       '#attributes' => ['class' => ['research-migration-progress-table']],
       '#cache' => [
+        'max-age' => 0,
         'tags' => ['research_migration_proposal_list'],
         'contexts' => ['user.permissions'],
       ],
@@ -592,6 +597,7 @@ public function esim_research_migration_proposal_edit_file_all($proposal_id) {
       '#empty' => $this->t('No project titles available at the moment.'),
       '#attributes' => ['class' => ['research-migration-project-titles-table']],
       '#cache' => [
+        'max-age' => 0,
         'tags' => ['rm_list_of_project_titles_list', 'research_migration_proposal_list'],
         'contexts' => ['user.permissions'],
       ],
@@ -633,7 +639,6 @@ public function esim_research_migration_proposal_edit_file_all($proposal_id) {
 
   public function esim_research_migration_project_files() {
     $proposal_id = $this->resolveIdentifier();
-    //var_dump($proposal_id);die;
     if (!$proposal_id) {
       $this->messenger()->addError($this->t('Missing proposal identifier.'));
       return $this->redirect('esim_research_migration.proposal_all');
@@ -645,19 +650,19 @@ public function esim_research_migration_proposal_edit_file_all($proposal_id) {
       ->execute()
       ->fetchObject();
 
-    // if (!$proposal || empty($proposal->samplefilepath)) {
-    //   $this->messenger()->addError($this->t('No synopsis file available for this proposal.'));
-    //   return $this->redirect('esim_research_migration.proposal_all');
-    // }
+    if (!$proposal || empty($proposal->samplefilepath)) {
+      $this->messenger()->addError($this->t('No synopsis file available for this proposal.'));
+      return $this->redirect('esim_research_migration.proposal_all');
+    }
 
     $root_path = rtrim(esim_research_migration_path(), '/') . '/';
     $file_path = $root_path . ltrim($proposal->samplefilepath, '/');
 
-    // if (!is_file($file_path)) {
-    //   $this->messenger()->addError($this->t('The requested file is not available.'));
-    //   return $this->redirect('esim_research_migration.proposal_all');
-    // }
-//var_dump($file_path);die;
+    if (!is_file($file_path)) {
+      $this->messenger()->addError($this->t('The requested file is not available.'));
+      return $this->redirect('esim_research_migration.proposal_all');
+    }
+
     $response = new BinaryFileResponse($file_path);
     $response->setContentDisposition('attachment', basename($file_path));
     $response->setPrivate();
@@ -704,6 +709,7 @@ public function esim_research_migration_proposal_edit_file_all($proposal_id) {
       '#rows' => $rows,
       '#attributes' => ['class' => ['research-migration-certificates-table']],
       '#cache' => [
+        'max-age' => 0,
         'tags' => ['research_migration_proposal_list'],
         'contexts' => ['user'],
       ],

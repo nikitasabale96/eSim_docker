@@ -2277,60 +2277,153 @@ function textbook_companion_download_sample_code()
     return $output . theme_pager($count);
   }
 
-  public function _list_all_certificates() {
-    $user = \Drupal::currentUser();
-    $query_id = db_query("SELECT id FROM textbook_companion_proposal WHERE proposal_status=3 AND uid= :uid", [
-      ':uid' => $user->uid
-      ]);
-    $exist_id = $query_id->fetchObject();
-    //var_dump($exist_id->id);die;
-    if ($exist_id) {
-      if ($exist_id->id < 3) {
-        \Drupal::messenger()->addMessage('<strong>You need to propose a book <a href="http://eSim.fossee.in/textbook-companion/proposal">Book Proposal</a></strong> or if you have already proposed then your book is under reviewing process', 'status');
-        return '';
-      } //$exist_id->id < 3
-      else {
-        $search_rows = [];
-        global $output;
-        $output = '';
-        $query3 = db_query("SELECT prop.id,pref.isbn,pref.book,pref.author FROM textbook_companion_proposal as prop,textbook_companion_preference as pref WHERE prop.proposal_status=3 AND pref.approval_status=1 AND pref.proposal_id=prop.id AND prop.uid= :uid", [
-          ':uid' => $user->uid
-          ]);
-        while ($search_data3 = $query3->fetchObject()) {
-          if ($search_data3->id) {
-            $search_rows[] = [
-              $search_data3->isbn,
-              $search_data3->book,
-              $search_data3->author,
-              l('Download Certificate', 'textbook-companion/certificates/generate_pdf/' . $search_data3->id),
-            ];
-          } //$search_data3->id
-        } //$search_data3 = $query3->fetchObject()
-        if ($search_rows) {
-          $search_header = [
-            'ISBN',
-            'Book Name',
-            'Author',
-            'Download Certificates',
+  // public function _list_all_certificates() {
+  //   $user = \Drupal::currentUser();
+  //   $query_id = db_query("SELECT id FROM textbook_companion_proposal WHERE proposal_status=3 AND uid= :uid", [
+  //     ':uid' => $user->uid
+  //     ]);
+  //   $exist_id = $query_id->fetchObject();
+  //   //var_dump($exist_id->id);die;
+  //   if ($exist_id) {
+  //     if ($exist_id->id < 3) {
+  //       \Drupal::messenger()->addMessage('<strong>You need to propose a book <a href="http://eSim.fossee.in/textbook-companion/proposal">Book Proposal</a></strong> or if you have already proposed then your book is under reviewing process', 'status');
+  //       return '';
+  //     } //$exist_id->id < 3
+  //     else {
+  //       $search_rows = [];
+  //       global $output;
+  //       $output = '';
+  //       $query3 = db_query("SELECT prop.id,pref.isbn,pref.book,pref.author FROM textbook_companion_proposal as prop,textbook_companion_preference as pref WHERE prop.proposal_status=3 AND pref.approval_status=1 AND pref.proposal_id=prop.id AND prop.uid= :uid", [
+  //         ':uid' => $user->uid
+  //         ]);
+  //       while ($search_data3 = $query3->fetchObject()) {
+  //         if ($search_data3->id) {
+  //           $search_rows[] = [
+  //             $search_data3->isbn,
+  //             $search_data3->book,
+  //             $search_data3->author,
+  //             l('Download Certificate', 'textbook-companion/certificates/generate_pdf/' . $search_data3->id),
+  //           ];
+  //         } //$search_data3->id
+  //       } //$search_data3 = $query3->fetchObject()
+  //       if ($search_rows) {
+  //         $search_header = [
+  //           'ISBN',
+  //           'Book Name',
+  //           'Author',
+  //           'Download Certificates',
+  //         ];
+  //         $output = theme('table', [
+  //           'header' => $search_header,
+  //           'rows' => $search_rows,
+  //         ]);
+  //         return $output;
+  //       } //$search_rows
+  //       else {
+  //         echo ("Error");
+  //         return '';
+  //       }
+  //     }
+  //   } //$exist_id->id
+  //   else {
+  //     \Drupal::messenger()->addMessage('<strong>You need to propose a book <a href="http://eSim.fossee.in/textbook-companion/proposal">Book Proposal</a></strong> or if you have already proposed then your book is under reviewing process', 'status');
+  //     $output = "<p style='color:red'>No certificates are available for download.</p>";
+  //     return $output;
+  //   }
+  // }
+public function _list_all_certificates() {
+
+  $user = \Drupal::currentUser();
+
+  $exist_id = \Drupal::database()->select('textbook_companion_proposal', 'p')
+    ->fields('p', ['id'])
+    ->condition('p.proposal_status', 3)
+    ->condition('p.uid', $user->id())
+    ->execute()
+    ->fetchObject();
+
+  if ($exist_id) {
+
+    if ($exist_id->id < 3) {
+
+      \Drupal::messenger()->addMessage(
+        Markup::create('You need to propose a book <a href="http://eSim.fossee.in/textbook-companion/proposal">Book Proposal</a> or if you have already proposed then your book is under reviewing process '),
+        'status'
+      );
+
+      return [];
+    }
+
+    else {
+
+      $search_rows = [];
+
+      $query3 = \Drupal::database()->select('textbook_companion_proposal', 'prop');
+      $query3->join('textbook_companion_preference', 'pref', 'pref.proposal_id = prop.id');
+
+      $query3->fields('prop', ['id']);
+      $query3->fields('pref', ['isbn', 'book', 'author']);
+
+      $query3->condition('prop.proposal_status', 3);
+      $query3->condition('pref.approval_status', 1);
+      $query3->condition('prop.uid', $user->id());
+
+      $results = $query3->execute();
+
+      foreach ($results as $search_data3) {
+
+        if ($search_data3->id) {
+
+          $download_link = Link::fromTextAndUrl(
+            'Download Certificate',
+            Url::fromUri('internal:/textbook-companion/certificates/generate_pdf/' . $search_data3->id)
+          )->toString();
+
+          $search_rows[] = [
+            $search_data3->isbn,
+            $search_data3->book,
+            $search_data3->author,
+            $download_link,
           ];
-          $output = theme('table', [
-            'header' => $search_header,
-            'rows' => $search_rows,
-          ]);
-          return $output;
-        } //$search_rows
-        else {
-          echo ("Error");
-          return '';
         }
       }
-    } //$exist_id->id
-    else {
-      \Drupal::messenger()->addMessage('<strong>You need to propose a book <a href="http://eSim.fossee.in/textbook-companion/proposal">Book Proposal</a></strong> or if you have already proposed then your book is under reviewing process', 'status');
-      $output = "<p style='color:red'>No certificates are available for download.</p>";
-      return $output;
+
+      if (!empty($search_rows)) {
+
+        $search_header = [
+          'ISBN',
+          'Book Name',
+          'Author',
+          'Download Certificates',
+        ];
+
+        return [
+          '#theme' => 'table',
+          '#header' => $search_header,
+          '#rows' => $search_rows,
+        ];
+      }
+      else {
+
+        return [
+          '#markup' => '<p style="color:red">Error</p>',
+        ];
+      }
     }
   }
+
+  else {
+
+    \Drupal::messenger()->addMessage(
+      Markup::create('<strong>You need to propose a book <a href="http://eSim.fossee.in/textbook-companion/proposal">Book Proposal</a></strong> or if you have already proposed then your book is under reviewing process'),
+      'status'
+    );
+
+    return [
+      '#markup' => '<p style="color:red">No certificates are available for download.</p>',
+    ];
+  }
+}
 
   public function verify_certificates($qr_code = 0) {
     $qr_code = arg(3);

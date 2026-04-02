@@ -1669,9 +1669,24 @@ return new RedirectResponse($url);
       }
     } //$exist_id->id
     else {
-      \Drupal::messenger()->addMessage('<strong>You need to propose a <a href="https://esim.fossee.in/lab-migration-project/proposal">Lab Migration Proposal</a></strong> or if you have already proposed then your Lab Migration is under reviewing process', 'status');
-      $page_content = "<span style='color:red;'> No certificate available </span>";
-      return $page_content;
+      // \Drupal::messenger()->addMessage('<strong>You need to propose a <a href="https://esim.fossee.in/lab-migration-project/proposal">Lab Migration Proposal</a></strong> or if you have already proposed then your Lab Migration is under reviewing process', 'status');
+      // $page_content = "<span style='color:red;'> No certificate available </span>";
+      // return $page_content;
+
+// \Drupal::messenger()->addMessage(
+//   '<strong>You need to propose a <a href="https://esim.fossee.in/lab-migration-project/proposal">Lab Migration Proposal</a></strong> or if you have already proposed then your Lab Migration is under reviewing process',
+//   'status'
+// );
+
+
+\Drupal::messenger()->addMessage(
+  Markup::create('<strong>You need to propose a <a href="https://esim.fossee.in/lab-migration-project/proposal">Lab Migration Proposal</a>or if you have already proposed then your Lab Migration is under reviewing process </strong> '),
+  'status'
+);
+return [
+  '#markup' => "<span style='color:red;'> No certificate available </span>",
+];
+// return new Response("<span style='color:red;'> No certificate available </span>");
     }
   }
 
@@ -1684,10 +1699,23 @@ return new RedirectResponse($url);
       $search_rows[] = [
         $details->lab_name,
         $details->institute_name,
-        $details->name,
-        l('Download Certificate', 'lab_migration/certificate/generate-pdf/' . $details->proposal_id . '/' . $details->id),
-        l('Edit Certificate', 'lab_migration/certificate/lm-participation/form/edit/' . $details->proposal_id . '/' . $details->id),
-      ];
+
+$download_link = Link::fromTextAndUrl(
+  'Download Certificate',
+  Url::fromUri('internal:/lab_migration/certificate/generate-pdf/' . $details->proposal_id . '/' . $details->id)
+)->toString(),
+
+$edit_link = Link::fromTextAndUrl(
+  'Edit Certificate',
+  Url::fromUri('internal:/lab_migration/certificate/lm-participation/form/edit/' . $details->proposal_id . '/' . $details->id)
+)->toString(),
+
+$pending_row = [
+  $details->name,
+  $download_link,
+  $edit_link,
+],   
+ ];
 
     }
     $search_header = [
@@ -1697,10 +1725,17 @@ return new RedirectResponse($url);
       'Download Certificates',
       'Edit Certificates',
     ];
-    $output .= theme('table', [
-      'header' => $search_header,
-      'rows' => $search_rows,
-    ]);
+    // $output .= theme('table', [
+    //   'header' => $search_header,
+    //   'rows' => $search_rows,
+    // ]);
+        $output =  [
+      '#type' => 'table',
+      '#header' => $search_header,
+      '#rows' => $pending_rows,
+      '#empty' => 'no rows found',
+    ];
+
     return $output;
   }
 

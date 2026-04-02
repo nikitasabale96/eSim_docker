@@ -70,7 +70,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     $form['contributor_name'] = [
       '#type' => 'textfield',
       '#title' => t('Name of the Proposer'),
-      // 's//' => 30,
+      '#size' => 30,
       '#maxlength' => 50,
       '#required' => TRUE,
       '#default_value' => $proposal_data->contributor_name,
@@ -83,7 +83,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     $form['university'] = [
       '#type' => 'textfield',
       '#title' => t('University'),
-      //#size' => 200,
+      '#size' => 200,
       '#maxlength' => 200,
       '#required' => TRUE,
       '#default_value' => $proposal_data->university,
@@ -91,7 +91,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     $form['institute'] = [
       '#type' => 'textfield',
       '#title' => t('Institute'),
-      //#size' => 80,
+      '#size' => 80,
       '#maxlength' => 200,
       '#required' => TRUE,
       '#default_value' => $proposal_data->institute,
@@ -105,7 +105,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     $form['faculty_name'] = [
       '#type' => 'textfield',
       '#title' => t('Name of the Faculty'),
-      //#size' => 50,
+      '#size' => 50,
       '#maxlength' => 50,
       '#validated' => TRUE,
       '#default_value' => $proposal_data->faculty_name,
@@ -113,7 +113,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     $form['faculty_department'] = [
       '#type' => 'textfield',
       '#title' => t('Department of the Faculty'),
-      //#size' => 50,
+      '#size' => 50,
       '#maxlength' => 50,
       '#validated' => TRUE,
       '#default_value' => $proposal_data->faculty_department,
@@ -121,7 +121,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     $form['faculty_email'] = [
       '#type' => 'textfield',
       '#title' => t('Email id of the Faculty'),
-      //#size' => 255,
+      '#size' => 255,
       '#maxlength' => 255,
       '#validated' => TRUE,
       '#default_value' => $proposal_data->faculty_email,
@@ -129,7 +129,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     $form['project_title'] = [
       '#type' => 'textfield',
       '#title' => t('Title of the Research Migration Project'),
-      //#size' => 300,
+      '#size' => 300,
       '#maxlength' => 350,
       '#required' => TRUE,
       '#default_value' => $proposal_data->project_title,
@@ -144,7 +144,7 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
     /* $form['solver_used'] = array(
         '#type' => 'textfield',
         '#title' => t('Solver to be used'),
-        //#size' => 50,
+        '#size' => 50,
         '#maxlength' => 50,
         '#required' => true,
         '#default_value' => $proposal_data->solver_used,
@@ -225,16 +225,24 @@ class EsimResearchMigrationProposalEditForm extends FormBase {
         }
       }
 
-      $this->messenger()->addStatus($this->t('The Research Migration proposal has been deleted.'));
-      if (_rm_rrmdir_project($proposal_id) === TRUE) {
-        $delete_query = $connection->delete('research_migration_proposal');
-        $delete_query->condition('id', $proposal_id);
-        $delete_query->execute();
-        $this->messenger()->addStatus($this->t('Proposal Deleted'));
-        $form_state->setRedirect('esim_research_migration.proposal_pending');
-        Cache::invalidateTags(['research_migration_proposal_list', 'research_migration_proposal:' . $proposal_id]);
-        return;
+      if (_rm_rrmdir_project($proposal_id) !== TRUE) {
+        $this->messenger()->addWarning($this->t('Project directory could not be deleted from disk. Continuing with proposal record deletion.'));
       }
+
+      $delete_query = $connection->delete('research_migration_proposal');
+      $delete_query->condition('id', $proposal_id);
+      $num_deleted = (int) $delete_query->execute();
+
+      if ($num_deleted > 0) {
+        $this->messenger()->addStatus($this->t('The Research Migration proposal has been deleted.'));
+      }
+      else {
+        $this->messenger()->addError($this->t('Unable to delete the proposal record.'));
+      }
+
+      $form_state->setRedirect('esim_research_migration.proposal_pending');
+      Cache::invalidateTags(['research_migration_proposal_list', 'research_migration_proposal:' . $proposal_id]);
+      return;
     }
 
     $values = $form_state->getValues();

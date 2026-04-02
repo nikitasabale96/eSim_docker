@@ -424,19 +424,19 @@ function esim_research_migration_upload_abstract_code_form_submit($form, &$form_
 // // @FIXME
 // // This looks like another module's variable. You'll need to rewrite this call
 // // to ensure that it uses the correct configuration object.
-$from = variable_get('research_migration_from_email', '');
+// $from = variable_get('research_migration_from_email', '');
 
     // @FIXME
 // // @FIXME
 // // This looks like another module's variable. You'll need to rewrite this call
 // // to ensure that it uses the correct configuration object.
-$bcc = variable_get('research_migration_emails', '');
+// $bcc = variable_get('research_migration_emails', '');
 
     // @FIXME
 // // @FIXME
 // // This looks like another module's variable. You'll need to rewrite this call
 // // to ensure that it uses the correct configuration object.
-$cc = variable_get('research_migration_cc_emails', '');
+// $cc = variable_get('research_migration_cc_emails', '');
 
     $params['abstract_uploaded']['proposal_id'] = $proposal_id;
     $params['abstract_uploaded']['submitted_abstract_id'] = $submitted_abstract_id;
@@ -455,23 +455,6 @@ $cc = variable_get('research_migration_cc_emails', '');
     }
 
     drupal_goto('research-migration-project/abstract-code');
-}
-function default_value_for_uploaded_files($filetype, $proposal_id)
-{
-    $query = \Drupal::database()->select('research_migration_submitted_abstracts_file');
-    $query->fields('research_migration_submitted_abstracts_file');
-    $query->condition('proposal_id', $proposal_id);
-    $selected_files_array = "";
-    if ($filetype == "S") {
-        $query->condition('filetype', $filetype);
-        $filetype_q = $query->execute()->fetchObject();
-        return $filetype_q;
-    } elseif ($filetype == "A") {
-        $query->condition('filetype', $filetype);
-        $filetype_q = $query->execute()->fetchObject();
-        return $filetype_q;
-    }
-    return;
 }
 function esim_research_migration_edit_upload_abstract_code_form($form, &$form_state)
 {

@@ -9,7 +9,6 @@ namespace Drupal\esim_research_migration\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element;
 use Drupal\Core\Cache\Cache;
 
 class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
@@ -35,17 +34,15 @@ class EsimResearchMigrationEditUploadAbstractCodeForm extends FormBase {
       } //$proposal_data = $proposal_q->fetchObject()
       else {
         \Drupal::messenger()->addError(t('Invalid proposal selected. Please try again.'));
-$form_state->setRedirect(
-  'esim_research_migration.proposal_edit_file_all',
-  ['proposal_id' => $proposal_id]
-);      }
+        $form_state->setRedirect('esim_research_migration.proposal_edit_file_all');
+        return [];
+      }
     } //$proposal_q
     else {
       \Drupal::messenger()->addError(t('Invalid proposal selected. Please try again.'));
-$form_state->setRedirect(
-  'esim_research_migration.proposal_edit_file_all',
-  ['proposal_id' => $proposal_id]
-);    }
+      $form_state->setRedirect('esim_research_migration.proposal_edit_file_all');
+      return [];
+    }
     $query = \Drupal::database()->select('research_migration_submitted_abstracts');
     $query->fields('research_migration_submitted_abstracts');
     $query->condition('proposal_id', $proposal_data->id);
@@ -60,10 +57,10 @@ $form_state->setRedirect(
       '#markup' => $proposal_data->contributor_name,
       '#title' => t('Contributor Name'),
     ];
-    $existing_uploaded_A_file = $this->default_value_for_uploaded_files("A", $proposal_data->id);
+    $existing_uploaded_A_file = $this->getUploadedFile('A', (int) $proposal_data->id);
     if (!$existing_uploaded_A_file) {
-      $existing_uploaded_A_file = new stdClass();
-      $existing_uploaded_A_file->filename = "No file uploaded";
+      $existing_uploaded_A_file = new \stdClass();
+      $existing_uploaded_A_file->filename = 'No file uploaded';
     } //!$existing_uploaded_A_file
     $config = \Drupal::config('esim_research_migration.settings');
     $synopsis_extensions = (string) $config->get('resource_upload_extensions');
@@ -75,10 +72,10 @@ $form_state->setRedirect(
       '#description' => t('Current File: @file', ['@file' => $existing_uploaded_A_file->filename]) . '<br />' . t('Allowed file extensions: @ext', ['@ext' => $synopsis_extensions]),
     ];
 
-    $existing_uploaded_S_file = $this->default_value_for_uploaded_files("S", $proposal_data->id);
+    $existing_uploaded_S_file = $this->getUploadedFile('S', (int) $proposal_data->id);
     if (!$existing_uploaded_S_file) {
-      $existing_uploaded_S_file = new stdClass();
-      $existing_uploaded_S_file->filename = "No file uploaded";
+      $existing_uploaded_S_file = new \stdClass();
+      $existing_uploaded_S_file->filename = 'No file uploaded';
     } //!$existing_uploaded_S_file
     $form['upload_research_migration_developed_process'] = [
       '#type' => 'file',
@@ -93,9 +90,6 @@ $form_state->setRedirect(
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Submit'),
-      '#submit' => [
-        // 'esim_research_migration.edit_upload_abstract_code_form'
-        ],
     ];
     // @FIXME
     // l() expects a Url object, created from a route name or external URI.
@@ -106,25 +100,6 @@ $form_state->setRedirect(
 
     return $form;
   }
-
-   public function default_value_for_uploaded_files($filetype, $proposal_id)
-{
-    $query = \Drupal::database()->select('research_migration_submitted_abstracts_file');
-    $query->fields('research_migration_submitted_abstracts_file');
-    $query->condition('proposal_id', $proposal_id);
-    $selected_files_array = "";
-    if ($filetype == "S") {
-        $query->condition('filetype', $filetype);
-        $filetype_q = $query->execute()->fetchObject();
-        return $filetype_q;
-    } elseif ($filetype == "A") {
-        $query->condition('filetype', $filetype);
-        $filetype_q = $query->execute()->fetchObject();
-        return $filetype_q;
-    }
-    return;
-}
-
 
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
@@ -200,10 +175,8 @@ $form_state->setRedirect(
     $proposal_data = $proposal_q->fetchObject();
     $proposal_id = $proposal_data->id;
     if (!$proposal_data) {
-$form_state->setRedirect(
-  'esim_research_migration.proposal_edit_file_all',
-  ['proposal_id' => $proposal_id]
-);      return;
+      $form_state->setRedirect('esim_research_migration.proposal_edit_file_all');
+      return;
     } //!$proposal_data
     $proposal_id = $proposal_data->id;
     $proposal_directory = $proposal_data->directory_name;
@@ -296,6 +269,17 @@ $form_state->setRedirect(
       'research_migration_submitted_abstracts_list',
       'research_migration_submitted_abstracts_file_list',
     ]);
+  }
+
+  private function getUploadedFile(string $filetype, int $proposal_id): ?object {
+    return \Drupal::database()
+      ->select('research_migration_submitted_abstracts_file', 'f')
+      ->fields('f')
+      ->condition('proposal_id', $proposal_id)
+      ->condition('filetype', $filetype)
+      ->range(0, 1)
+      ->execute()
+      ->fetchObject() ?: NULL;
   }
 
 }

@@ -1171,7 +1171,7 @@ public function circuit_simulation_download_upload_file() {
     } //$exist_id->id
     else {
       \Drupal::messenger()->addStatus('<strong>You need to propose a <a href="https://esim.fossee.in/circuit-simulation-project/proposal">Circuit Simulation Proposal</a></strong> or if you have already proposed then your Circuit Simulation is under reviewing process');
-      $page_content = "<span style='color:red;'> No certificate available </span>";
+      $page_content = "<span> No certificate available </span>";
       return $page_content;
     }
   }

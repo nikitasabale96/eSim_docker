@@ -35,7 +35,7 @@ class AddProjectTitleForm extends FormBase {
     $form['new_project_title_name'] = [
       '#type' => 'textfield',
       '#title' => t('Enter the name of the project title'),
-      // '#size' => 250,
+      '#size' => 250,
       '#attributes' => [
         'placeholder' => t('Enter the name of the project title displayed to the contributor')
         ],
@@ -45,7 +45,7 @@ class AddProjectTitleForm extends FormBase {
     $form['project_link'] = [
       '#type' => 'textfield',
       '#title' => t('Enter the Link of the project'),
-      // '#size' => 250,
+      '#size' => 250,
       '#attributes' => [
         'placeholder' => t('Enter the Link of the project displayed to the contributor')
         ],
@@ -116,7 +116,7 @@ class AddProjectTitleForm extends FormBase {
       ":rm_project_title_name" => $v['new_project_title_name'],
       ":rm_project_link" => $v['project_link'],
     ];
-    $result1 = \Drupal::database()->query($result, $args);
+    $result1 = \Drupal::database()->query($result, $args, $result);
     $dest_path = esim_research_migration_project_titles_resource_file_path();
     //var_dump($dest_path);die;
     if (!isset($_FILES['files']['name']) || !is_array($_FILES['files']['name'])) {
